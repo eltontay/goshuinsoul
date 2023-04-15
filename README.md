@@ -3,6 +3,7 @@
 ETH Tokyo 2023 project submission : https://ethglobal.com/showcase/goshuinsoul-xm0r6
 
 Smart Contracts and Subgraphs : https://github.com/eltontay/goshuinsoul_sc
+
 Deployed Soul-bound token address : 0x2B8a1f96CBe44Ccc38E70E1D50D0DF5a97895e26
 
 ## About
