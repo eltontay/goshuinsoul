@@ -9,3 +9,11 @@ export declare function getTestnetSdk(defaultSignerOrProvider: Signer | provider
     WrappedETH: types.testnet.WrappedETH;
     USDC: types.testnet.USDC;
 };
+export declare type MainnetSdk = ReturnType<typeof getMainnetSdk>;
+export declare function getMainnetSdk(defaultSignerOrProvider: Signer | providers.Provider): {
+    CrowdfundingNFT: types.mainnet.CrowdfundingNFT;
+    USDT: types.mainnet.USDT;
+    DAI: types.mainnet.DAI;
+    WrappedETH: types.mainnet.WrappedETH;
+    USDC: types.mainnet.USDC;
+};

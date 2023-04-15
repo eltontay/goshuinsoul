@@ -1,4 +1,4 @@
-import { getTestnetSdk } from 'libs/blockchain';
+import { getMainnetSdk, getTestnetSdk } from 'libs/blockchain';
 import React, { useContext, useEffect, useState } from 'react';
 import { useAuth } from './AuthProvider';
 
@@ -19,7 +19,9 @@ export function ContractProvider({ children }: AppContextProps) {
     if (!provider) {
       return;
     }
-    const sdk1 = getTestnetSdk(provider?.getSigner())
+    const sdk1 =process.env['NEXT_PUBLIC_BLOCKCHAIN_NETWORK'] === 'mainnet'
+    ? getMainnetSdk(provider?.getSigner())
+    :getTestnetSdk(provider?.getSigner())
     setSdk(sdk1);
   }, [provider]);
 

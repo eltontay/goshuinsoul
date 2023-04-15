@@ -4,6 +4,7 @@
 dist
 tmp
 /out-tsc
+.env.local
 
 # dependencies
 node_modules
@@ -41,6 +42,5 @@ Thumbs.db
 # Next.js
 .next
 
-.env
 codegen-hasura.yml
-codegen-graph.yml
+.env

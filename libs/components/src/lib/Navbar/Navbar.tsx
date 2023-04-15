@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import Image from 'next/image';
 import Link from 'next/link';
 import { NextRouter, useRouter } from 'next/router';
@@ -13,7 +15,7 @@ import { MetaMaskInpageProvider } from '@metamask/providers';
 library.add(faSpinner, fa2);
 
 
-declare var window: any
+declare const window: any
 
 export function Navbar(props: any) {
   const router = useRouter();
@@ -55,31 +57,7 @@ export function Navbar(props: any) {
                     <img src="/logo.png" alt="NFT Logo" />{' '}
                   </Link>
                 </div>
-                <div className="col-md-6">
-                  <ul className="navlnks flex">
-                    <li>
-                      <Link href="/MarketPlace" passHref>
-                        <span>Marketplace</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/AboutUs" passHref>
-                        <span>About us</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/HowItWorks" passHref>
-                        <span>How it works?</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/FaqList" passHref>
-                        <span>FAQs</span>
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-                <div className="col-md-4 text-right">
+                <div className="col-md-8 text-right">
                   {!user &&
                     (isLoading ? (
                       <FontAwesomeIcon icon="spinner"></FontAwesomeIcon>
@@ -95,7 +73,7 @@ export function Navbar(props: any) {
                       </div>
                     ))}
                   {user && (
-                    <>
+                    <div>
                       <div className="after-login">
                         <ul className="nav-login">
                           <li>
@@ -179,7 +157,7 @@ export function Navbar(props: any) {
                           </li>
                         </ul>
                       </div>
-                    </>
+                    </div>
                   )}
                 </div>
               </div>

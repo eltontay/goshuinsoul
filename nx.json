@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "npmScope": "eth-tokyo-frontend",
+  "npmScope": "goshuinsoul",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/nx-cloud",

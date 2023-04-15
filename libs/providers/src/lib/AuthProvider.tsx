@@ -14,7 +14,7 @@ import {
   UserFieldsFragment,
   useGetUserQuery,
   useUpsertWeb3UserMutation,
-} from '@eth-tokyo/database';
+} from '@goshuinsoul/database';
 import { useRouter } from 'next/router';
 import { Web3Auth as web3 } from '@web3auth/web3auth';
 import {
@@ -137,7 +137,17 @@ export const Web3AuthProvider = ({ children }: IWeb3AuthProps) => {
           'BKMEx0P9Z_IFJYLTeZiAsRHeOnxfv3xLm4lSiij1TEgpXfUI2Vzuf74lX1Fw4-4vmchfRGi5hkj4eSO36JD0yFs';
         const web3AuthInstance = new web3({
           chainConfig:
-              ({
+            process.env['NEXT_PUBLIC_BLOCKCHAIN_NETWORK'] === 'mainnet'
+              ? ({
+                  displayName: 'Polygon Mainnet',
+                  chainNamespace: CHAIN_NAMESPACES.EIP155,
+                  chainId: '0x89',
+                  rpcTarget: `https://polygon-rpc.com`,
+                  blockExplorer: 'https://polygonscan.com/',
+                  ticker: 'MATIC',
+                  tickerName: 'MATIC Token',
+                } as CustomChainConfig)
+              : ({
                   displayName: 'Polygon Testnet',
                   chainNamespace: CHAIN_NAMESPACES.EIP155,
                   chainId: '0x13881',
@@ -159,7 +169,10 @@ export const Web3AuthProvider = ({ children }: IWeb3AuthProps) => {
             mfaLevel: 'none',
           },
           adapterSettings: {
-            network: 'testnet',
+            network:
+              process.env['NEXT_PUBLIC_BLOCKCHAIN_NETWORK'] === 'mainnet'
+                ? 'mainnet'
+                : 'testnet',
             clientId,
             uxMode: 'popup',
             whiteLabel: {

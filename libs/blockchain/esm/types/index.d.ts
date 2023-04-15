@@ -1,3 +1,15 @@
+import type * as mainnet from "./mainnet";
+export type { mainnet };
 import type * as testnet from "./testnet";
 export type { testnet };
 export * as factories from "./factories";
+export type { CrowdfundingNFT } from "./mainnet/CrowdfundingNFT";
+export { CrowdfundingNFT__factory } from "./factories/mainnet/CrowdfundingNFT__factory";
+export type { DAI } from "./mainnet/DAI";
+export { DAI__factory } from "./factories/mainnet/DAI__factory";
+export type { USDC } from "./mainnet/USDC";
+export { USDC__factory } from "./factories/mainnet/USDC__factory";
+export type { USDT } from "./mainnet/USDT";
+export { USDT__factory } from "./factories/mainnet/USDT__factory";
+export type { WrappedETH } from "./mainnet/WrappedETH";
+export { WrappedETH__factory } from "./factories/mainnet/WrappedETH__factory";

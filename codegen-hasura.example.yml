@@ -1,8 +1,8 @@
 overwrite: true
 schema:
-  - https://sbt-db-1b4a.settlemint.com/bpaas-19faDE45dFE2ea995cCa257c764c669C580b2980/v1/graphql:
+  - https://hasura-xxx.settlemint.com/bpaas-xxx:
       headers:
-        x-hasura-admin-secret: 452a73b9b914606fa57f
+        x-hasura-admin-secret: xxx
 documents: ./**/*.hasura.graphql
 generates:
   ./libs/database/src/graphql.hasura.types.ts:
@@ -20,6 +20,7 @@ generates:
         uuid: string
         numeric: number
         timestamptz: string
+        date: string
       nonOptionalTypename: true
       useTypeImports: true
       inlineFragmentTypes: combine
@@ -51,6 +52,7 @@ generates:
         numeric: number
         timestamptz: string
         timetz: string
+        date: string
       nonOptionalTypename: true
       useTypeImports: true
       inlineFragmentTypes: combine

@@ -8,6 +8,18 @@ export default function Footer(props: any) {
   return (
     <>
       <div className="hidden md:  flex text-center footer-text inherit">
+        <Link href="/amitamotion/" passHref className="">
+          {langData?.about_amita}
+        </Link>
+        <Link href="/faq/" passHref className="">
+          {langData?.faq}
+        </Link>
+        <Link href="/tc/" passHref className="">
+          {langData?.tac}
+        </Link>
+        <Link href="/privacy-policy/" passHref className="">
+          {langData?.pp}
+        </Link>
       </div>
     </>
   );

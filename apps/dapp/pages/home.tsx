@@ -1,7 +1,7 @@
 import React from 'react';
 import { NextPageWithLayout } from './_app';
 import Router from 'next/router';
-import { useAuth } from '@eth-tokyo/providers';
+import { useAuth } from '@goshuinsoul/providers';
 
 const Page: NextPageWithLayout = () => {
   const { user, login } = useAuth();
@@ -81,7 +81,7 @@ const Page: NextPageWithLayout = () => {
                             pathname: '/Payment',
                             query: { amount: amount, count: count },
                           },
-                          '/home'
+                          '/'
                         );
                       }
                     }}

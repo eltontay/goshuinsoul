@@ -1,9 +1,8 @@
-/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { GraphQLClient } from 'graphql-request';
 import {
   InsertTransactionLogDocument,
   UpdateSqsMessageIdDocument,
-} from '@eth-tokyo/database';
+} from '@goshuinsoul/database';
 
 interface TransactionInsert {
   nftType: 'empire' | 'cleopatra';
