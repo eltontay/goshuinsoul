@@ -42,5 +42,4 @@ Thumbs.db
 # Next.js
 .next
 
-codegen-hasura.yml
 .env
