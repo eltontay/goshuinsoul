@@ -15,9 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@eth-tokyo/blockchain": ["libs/blockchain/src/index.ts"],
+      "@eth-tokyo/components": ["libs/components/src/index.ts"],
       "@eth-tokyo/database": ["libs/database/src/index.ts"],
-      "@eth-tokyo/providers": ["libs/providers/src/index.ts"],
-      "@eth-tokyo/blockchain": ["libs/blockchain/src/index.ts"]
+      "@eth-tokyo/providers": ["libs/providers/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
