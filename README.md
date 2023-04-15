@@ -44,3 +44,16 @@ Customisable and unique Goushuin token
 3. Shrine/Temple issues a credential claim in a form of a QR Code
 4. User logs into GoushinSoul web app, opens Polygon ID app and scans QR Code
 5. User gets navigated to a payment page that provides user an option to pay either via fiat or crypto for a digital GoshuinSoul stamp
+6. User receives GoshuinSoul Soul-bound token
+
+## Current Workflow
+
+1. Login into GoushuinSoul with web3auth at the top right
+2. Try out social login (e.g. Google)
+3. Click on Donate
+4. Open Polygon ID App and Scan the QR Code (Currently, it is static, so if you know how, generate your own qr code!)
+   - Currently, it is a bit hacky so everyone can try :P
+5. Click on the Visa logo in FIAT payment
+6. Click on Pay 500 yen
+7. Key in credit card details (4242 4242 4242 4242)
+8. You have successfully minted your soul-bound token and received your digital Goushuin stamp! Hurray!
