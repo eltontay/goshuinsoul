@@ -58,7 +58,7 @@ const Page: NextPageWithLayout = () => {
         </div>
         <div className="nft-area">
           <div className="nft-contain">
-            <h1>My NFT</h1>
+            <h1>My Goshuins</h1>
             {userData[0]?.amount ? (
               <div className="row space-top">
                 <div className="col-md-6">
@@ -72,11 +72,11 @@ const Page: NextPageWithLayout = () => {
                   </div>
                   <div className="nft-artist">
                     <div className="nft-artist-img">
-                      <img src="artist.png" alt="" />
+                      <img src="temple.jpeg" alt="" />
                     </div>
                     <div className="nft-artist-detail">
-                      <label htmlFor="">ARTIST</label>
-                      <span>@lisaopt</span>
+                      <label htmlFor="">Temple</label>
+                      <span>zojo-ji</span>
                     </div>
                   </div>
                   <div className="artwork-heading">GoshuinSoul NFT</div>

@@ -32,11 +32,11 @@ const Page: NextPageWithLayout = () => {
                 <h2>Goshuin Soul NFT</h2>
                 <div className="nft-artist">
                   <div className="nft-artist-img">
-                    <img src="artist.png" alt="" />
+                    <img src="temple.jpeg" alt="" />
                   </div>
                   <div className="nft-artist-detail">
-                    <label htmlFor="">ARTIST</label>
-                    <span>@lisaopt</span>
+                    <label htmlFor="">Temple</label>
+                    <span>zojo-ji</span>
                   </div>
                 </div>
               </div>
@@ -86,7 +86,7 @@ const Page: NextPageWithLayout = () => {
                       }
                     }}
                   >
-                    Buy Now
+                    Donate
                   </button>
                 </div>
               </div>

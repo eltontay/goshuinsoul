@@ -9,15 +9,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { MetaMaskInpageProvider } from '@metamask/providers';
 
-
 library.add(faSpinner, fa2);
 
-
-declare var window: any
+declare var window: any;
 
 export function Navbar(props: any) {
   const router = useRouter();
-  const { login, logout, user, web3Auth, isLoading ,provider} = useAuth();
+  const { login, logout, user, web3Auth, isLoading, provider } = useAuth();
   const [isLogged, setIsLogged] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [isOpen, setOpen] = useState(false);
@@ -32,14 +30,14 @@ export function Navbar(props: any) {
     const accounts = await ethereum.enable();
     const account = accounts[0];
     // do something with new account here
-    if(user){
-    logout()
+    if (user) {
+      logout();
     }
   }
 
   ethereum.on('accountsChanged', function (accounts) {
     getAccount();
-  })
+  });
 
   return (
     <>
@@ -59,7 +57,7 @@ export function Navbar(props: any) {
                   <ul className="navlnks flex">
                     <li>
                       <Link href="/MarketPlace" passHref>
-                        <span>Marketplace</span>
+                        <span>Temples</span>
                       </Link>
                     </li>
                     <li>
@@ -101,7 +99,10 @@ export function Navbar(props: any) {
                           <li>
                             <div
                               className="icon1 wallet-icon"
-                              onClick={()=>{toggleMenu1(); setOpen(false)}}
+                              onClick={() => {
+                                toggleMenu1();
+                                setOpen(false);
+                              }}
                             >
                               <img src="icon-wallet.svg" alt="" />
                             </div>
@@ -120,30 +121,33 @@ export function Navbar(props: any) {
                                       <label htmlFor="">Public Address:</label>
                                       <span>{user.user_address}</span>
                                     </li>
-                                    {provider?.connection?.url === 'metamask' ? '' :
-
-                                    <li>
-                                      <label htmlFor="">
-                                        This is your private key (Click to copy)
-                                      </label>
-                                      <p>
-                                        xxxxxxxxxxxxxxxxxxx{' '}
-                                        <span
-                                          className="copyicon"
-                                          onClick={async () => {
-                                            navigator.clipboard.writeText(
-                                              `${await web3Auth?.provider?.request(
-                                                { method: 'eth_private_key' }
-                                              )}`
-                                            );
-                                            setcopy('Copied');
-                                          }}
-                                        >
-                                          {copy}
-                                        </span>
-                                      </p>
-                                    </li>
-}
+                                    {provider?.connection?.url ===
+                                    'metamask' ? (
+                                      ''
+                                    ) : (
+                                      <li>
+                                        <label htmlFor="">
+                                          This is your private key (Click to
+                                          copy)
+                                        </label>
+                                        <p>
+                                          xxxxxxxxxxxxxxxxxxx{' '}
+                                          <span
+                                            className="copyicon"
+                                            onClick={async () => {
+                                              navigator.clipboard.writeText(
+                                                `${await web3Auth?.provider?.request(
+                                                  { method: 'eth_private_key' }
+                                                )}`
+                                              );
+                                              setcopy('Copied');
+                                            }}
+                                          >
+                                            {copy}
+                                          </span>
+                                        </p>
+                                      </li>
+                                    )}
                                   </ul>
                                   <div className="warning-text">
                                     Warning: Never disclose this key. Anyone
@@ -157,7 +161,10 @@ export function Navbar(props: any) {
                           <li>
                             <div
                               className="icon1 drop-opt"
-                              onClick={()=>{toggleMenu();setShow(false)}}
+                              onClick={() => {
+                                toggleMenu();
+                                setShow(false);
+                              }}
                             >
                               <img src="icon-user.svg" alt="" />
                             </div>
@@ -167,7 +174,7 @@ export function Navbar(props: any) {
                                   <Link href="/myProfile">Profile</Link>
                                 </li>
                                 <li>
-                                  <Link href="/MyNft">My NFT</Link>
+                                  <Link href="/MyNft">My Goshuins</Link>
                                 </li>
                                 <li>
                                   <Link href="javascript:void(0)">
@@ -225,10 +232,11 @@ export function Navbar(props: any) {
               return (
                 <Link href={navItem.href} passHref key={navItem.label}>
                   className=
-                  {`md:px-2 hover-blue text-[#fF0000] text-right collection-link object-right ${isNavItemActive(navItem.href, navItem.activeOnUrls, router)
+                  {`md:px-2 hover-blue text-[#fF0000] text-right collection-link object-right ${
+                    isNavItemActive(navItem.href, navItem.activeOnUrls, router)
                       ? 'underline decoration-blue-500 underline-offset-4 '
                       : ''
-                    }`}
+                  }`}
                   {navItem.label}
                 </Link>
               );
