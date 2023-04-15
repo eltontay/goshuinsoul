@@ -51,7 +51,7 @@ const Page: NextPageWithLayout = () => {
       <div className="wrap">
         <div className="container">
           <div className="backBtn mb-10">
-            <Link href="/home" passHref>
+            <Link href="/" passHref>
               Back
             </Link>
           </div>

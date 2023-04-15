@@ -3,10 +3,7 @@ import Link from 'next/link';
 import { Navbar, useStorage } from '@goshuinsoul/components';
 import { useAuth } from '@goshuinsoul/providers';
 import moment from 'moment';
-import {
-  hasuratypes,
-  useCreateUserMutation,
-} from '@goshuinsoul/database';
+import { hasuratypes, useCreateUserMutation } from '@goshuinsoul/database';
 import { NextPageWithLayout } from './_app';
 import Router from 'next/router';
 import { ValidationError, bool, number, object, string } from 'yup';
@@ -72,7 +69,7 @@ const Page: NextPageWithLayout = () => {
         },
       });
       setSession(newUser.data.insert_users.returning[0]);
-      Router.push('/home');
+      Router.push('/');
     } catch (error) {
       console.error(error);
       if (error instanceof ValidationError) {

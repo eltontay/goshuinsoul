@@ -36,7 +36,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  return res.status(200);
+  return res.status(200).json({ status: true });
   // Get session ID from request
   // const sessionId = req.query.sessionId;
 

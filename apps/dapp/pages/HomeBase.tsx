@@ -2,6 +2,7 @@ import React from 'react';
 import { NextPageWithLayout } from './_app';
 import Router from 'next/router';
 import { useAuth } from '@goshuinsoul/providers';
+import { Navbar } from '@goshuinsoul/components';
 
 const Page: NextPageWithLayout = () => {
   const { user, login } = useAuth();
@@ -78,10 +79,10 @@ const Page: NextPageWithLayout = () => {
                       } else {
                         Router.push(
                           {
-                            pathname: '/Payment',
+                            pathname: '/zkProof',
                             query: { amount: amount, count: count },
                           },
-                          '/home'
+                          '/'
                         );
                       }
                     }}

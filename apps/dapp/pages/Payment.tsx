@@ -4,11 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Router from 'next/router';
 import axios from 'axios';
-import {
-  useAuth,
-  useContract,
-  useLocation,
-} from '@goshuinsoul/providers';
+import { useAuth, useContract, useLocation } from '@goshuinsoul/providers';
 import {
   useClaimTokenMutation,
   useGetClaimedTokenAmountsQuery,
@@ -311,7 +307,7 @@ const Page: NextPageWithLayout = () => {
       <div className="wrap">
         <div className="container">
           <div className="backBtn mb-10">
-            <Link href="/home" passHref>
+            <Link href="/" passHref>
               Back
             </Link>
           </div>
