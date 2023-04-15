@@ -56,22 +56,22 @@ export function Navbar(props: any) {
                 <div className="col-md-6">
                   <ul className="navlnks flex">
                     <li>
-                      <Link href="/MarketPlace" passHref>
+                      <Link href="/" passHref>
                         <span>Temples</span>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/AboutUs" passHref>
+                      <Link href="/" passHref>
                         <span>About us</span>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/HowItWorks" passHref>
+                      <Link href="/" passHref>
                         <span>How it works?</span>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/FaqList" passHref>
+                      <Link href="/" passHref>
                         <span>FAQs</span>
                       </Link>
                     </li>

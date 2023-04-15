@@ -4,7 +4,7 @@ export default defineConfig({
   outputPath: './libs/blockchain',
   rpc: {
     testnet:
-      'https://testnet-d214.settlemint.com/bpaas-41D1F9e07A4817CC91a14d4e7F2E101DAfc5E8F5',
+      'https://testnet-d214.settlemint.com/bpaas-41D1F9e07A4817CC91a14d4e7F2E101DAfc5E8F5', 
   },
   contracts: {
     testnet: {
