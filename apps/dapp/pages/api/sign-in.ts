@@ -11,7 +11,7 @@ export default async function handler(
   const sessionId = 1;
   const callbackURL = '/api/callback';
   const audience =
-    'did:polygonid:polygon:mumbai:2qL3R9yihUZUPyNxqa23pmEnV5g4MHmMxAa8TTKqiK';
+    'did:polygonid:polygon:mumbai:2qQ1BQ7YSfXJVo1DTUduERDQfPFuzvsDaWyUCsVRVt';
 
   const uri = `${hostUrl}${callbackURL}?sessionId=${sessionId}`;
 
