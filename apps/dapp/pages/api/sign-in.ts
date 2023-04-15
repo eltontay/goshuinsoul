@@ -7,7 +7,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   // Audience is verifier id
-  const hostUrl = 'https://goshuin-soul.vercel.app';
+  const hostUrl = 'https://goshuinsoul.vercel.app';
   const sessionId = 1;
   const callbackURL = '/api/callback';
   const audience =

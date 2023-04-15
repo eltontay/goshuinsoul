@@ -11,7 +11,7 @@ const authRequest = {
   body: {
     reason: 'test flow',
     message: '',
-    callbackUrl: 'https://goshuin-soul.vercel.app/api/callback?sessionId=1',
+    callbackUrl: 'https://goshuinsoul.vercel.app/api/callback?sessionId=1',
     scope: [
       {
         id: 1,
