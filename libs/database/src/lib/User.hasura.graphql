@@ -1,0 +1,52 @@
+fragment UserFields on users {
+  user_address
+    city
+    country
+    dob
+    email
+    first_name
+    last_name
+    mobile
+    user_address
+}
+
+query GetUsers($limit: Int, $offset: Int) {
+  users(limit: $limit, offset: $offset) {
+    ...UserFields
+  }
+  users_aggregate {
+    aggregate {
+      count
+    }
+  }
+}
+
+mutation UpsertWeb3User($blockchainAddress: String!) {
+  insert_users_one(
+    object: { user_address: $blockchainAddress}
+    on_conflict: { constraint: users_pkey }
+  ) {
+    ...UserFields
+  }
+}
+
+query GetUser($blockchainAddress: String!) {
+  users(where: { user_address: { _eq: $blockchainAddress } }) {
+    ...UserFields
+  }
+}
+
+mutation updateUserToken($blockchainAddress: String) {
+  update_users(where: {user_address: {_eq: $blockchainAddress}},) {
+    affected_rows
+  }
+}
+
+
+mutation createUser($objects: [users_insert_input!] = {}) {
+  insert_users(objects: $objects) {
+    returning {
+      ...UserFields
+    }
+  }
+}

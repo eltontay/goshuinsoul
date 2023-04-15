@@ -42,3 +42,5 @@ Thumbs.db
 .next
 
 .env
+codegen-hasura.yml
+codegen-graph.yml

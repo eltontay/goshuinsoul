@@ -10,21 +10,10 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  date: string;
   numeric: number;
+  timestamptz: string;
   uuid: string;
-};
-
-/** Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'. */
-export type Boolean_Comparison_Exp = {
-  _eq: InputMaybe<Scalars['Boolean']>;
-  _gt: InputMaybe<Scalars['Boolean']>;
-  _gte: InputMaybe<Scalars['Boolean']>;
-  _in: InputMaybe<Array<Scalars['Boolean']>>;
-  _is_null: InputMaybe<Scalars['Boolean']>;
-  _lt: InputMaybe<Scalars['Boolean']>;
-  _lte: InputMaybe<Scalars['Boolean']>;
-  _neq: InputMaybe<Scalars['Boolean']>;
-  _nin: InputMaybe<Array<Scalars['Boolean']>>;
 };
 
 /** Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'. */
@@ -73,365 +62,387 @@ export type String_Comparison_Exp = {
   _similar: InputMaybe<Scalars['String']>;
 };
 
-/** columns and relationships of "assets" */
-export type Assets = {
-  __typename: 'assets';
-  assetId: Maybe<Scalars['String']>;
-  assetName: Scalars['String'];
-  assetType: Scalars['String'];
-  assetValue: Scalars['numeric'];
-  availableSupply: Scalars['Int'];
-  buyPrice: Maybe<Scalars['String']>;
-  couponRate: Maybe<Scalars['String']>;
-  currency: Maybe<Scalars['String']>;
-  id: Scalars['uuid'];
-  maturity: Maybe<Scalars['String']>;
-  paymentDate: Maybe<Scalars['String']>;
-  payments: Maybe<Scalars['String']>;
-  periodicity: Maybe<Scalars['String']>;
-  sellprice: Maybe<Scalars['String']>;
-  tokenized: Scalars['Boolean'];
+/** columns and relationships of "claimed_tokens" */
+export type Claimed_Tokens = {
+  __typename: 'claimed_tokens';
+  amounts: Scalars['numeric'];
+  contract_address: Maybe<Scalars['String']>;
+  nft_type: Scalars['String'];
+  /** An object relationship */
+  token: Maybe<Tokens>;
+  token_id: Scalars['numeric'];
+  /** An array relationship */
+  transactions: Array<Transactions>;
+  /** An aggregate relationship */
+  transactions_aggregate: Transactions_Aggregate;
+  user_address: Scalars['String'];
 };
 
-/** aggregated selection of "assets" */
-export type Assets_Aggregate = {
-  __typename: 'assets_aggregate';
-  aggregate: Maybe<Assets_Aggregate_Fields>;
-  nodes: Array<Assets>;
+
+/** columns and relationships of "claimed_tokens" */
+export type Claimed_TokensTransactionsArgs = {
+  distinct_on: InputMaybe<Array<Transactions_Select_Column>>;
+  limit: InputMaybe<Scalars['Int']>;
+  offset: InputMaybe<Scalars['Int']>;
+  order_by: InputMaybe<Array<Transactions_Order_By>>;
+  where: InputMaybe<Transactions_Bool_Exp>;
 };
 
-/** aggregate fields of "assets" */
-export type Assets_Aggregate_Fields = {
-  __typename: 'assets_aggregate_fields';
-  avg: Maybe<Assets_Avg_Fields>;
+
+/** columns and relationships of "claimed_tokens" */
+export type Claimed_TokensTransactions_AggregateArgs = {
+  distinct_on: InputMaybe<Array<Transactions_Select_Column>>;
+  limit: InputMaybe<Scalars['Int']>;
+  offset: InputMaybe<Scalars['Int']>;
+  order_by: InputMaybe<Array<Transactions_Order_By>>;
+  where: InputMaybe<Transactions_Bool_Exp>;
+};
+
+/** aggregated selection of "claimed_tokens" */
+export type Claimed_Tokens_Aggregate = {
+  __typename: 'claimed_tokens_aggregate';
+  aggregate: Maybe<Claimed_Tokens_Aggregate_Fields>;
+  nodes: Array<Claimed_Tokens>;
+};
+
+export type Claimed_Tokens_Aggregate_Bool_Exp = {
+  count: InputMaybe<Claimed_Tokens_Aggregate_Bool_Exp_Count>;
+};
+
+export type Claimed_Tokens_Aggregate_Bool_Exp_Count = {
+  arguments: InputMaybe<Array<Claimed_Tokens_Select_Column>>;
+  distinct: InputMaybe<Scalars['Boolean']>;
+  filter: InputMaybe<Claimed_Tokens_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
+/** aggregate fields of "claimed_tokens" */
+export type Claimed_Tokens_Aggregate_Fields = {
+  __typename: 'claimed_tokens_aggregate_fields';
+  avg: Maybe<Claimed_Tokens_Avg_Fields>;
   count: Scalars['Int'];
-  max: Maybe<Assets_Max_Fields>;
-  min: Maybe<Assets_Min_Fields>;
-  stddev: Maybe<Assets_Stddev_Fields>;
-  stddev_pop: Maybe<Assets_Stddev_Pop_Fields>;
-  stddev_samp: Maybe<Assets_Stddev_Samp_Fields>;
-  sum: Maybe<Assets_Sum_Fields>;
-  var_pop: Maybe<Assets_Var_Pop_Fields>;
-  var_samp: Maybe<Assets_Var_Samp_Fields>;
-  variance: Maybe<Assets_Variance_Fields>;
+  max: Maybe<Claimed_Tokens_Max_Fields>;
+  min: Maybe<Claimed_Tokens_Min_Fields>;
+  stddev: Maybe<Claimed_Tokens_Stddev_Fields>;
+  stddev_pop: Maybe<Claimed_Tokens_Stddev_Pop_Fields>;
+  stddev_samp: Maybe<Claimed_Tokens_Stddev_Samp_Fields>;
+  sum: Maybe<Claimed_Tokens_Sum_Fields>;
+  var_pop: Maybe<Claimed_Tokens_Var_Pop_Fields>;
+  var_samp: Maybe<Claimed_Tokens_Var_Samp_Fields>;
+  variance: Maybe<Claimed_Tokens_Variance_Fields>;
 };
 
 
-/** aggregate fields of "assets" */
-export type Assets_Aggregate_FieldsCountArgs = {
-  columns: InputMaybe<Array<Assets_Select_Column>>;
+/** aggregate fields of "claimed_tokens" */
+export type Claimed_Tokens_Aggregate_FieldsCountArgs = {
+  columns: InputMaybe<Array<Claimed_Tokens_Select_Column>>;
   distinct: InputMaybe<Scalars['Boolean']>;
 };
 
+/** order by aggregate values of table "claimed_tokens" */
+export type Claimed_Tokens_Aggregate_Order_By = {
+  avg: InputMaybe<Claimed_Tokens_Avg_Order_By>;
+  count: InputMaybe<Order_By>;
+  max: InputMaybe<Claimed_Tokens_Max_Order_By>;
+  min: InputMaybe<Claimed_Tokens_Min_Order_By>;
+  stddev: InputMaybe<Claimed_Tokens_Stddev_Order_By>;
+  stddev_pop: InputMaybe<Claimed_Tokens_Stddev_Pop_Order_By>;
+  stddev_samp: InputMaybe<Claimed_Tokens_Stddev_Samp_Order_By>;
+  sum: InputMaybe<Claimed_Tokens_Sum_Order_By>;
+  var_pop: InputMaybe<Claimed_Tokens_Var_Pop_Order_By>;
+  var_samp: InputMaybe<Claimed_Tokens_Var_Samp_Order_By>;
+  variance: InputMaybe<Claimed_Tokens_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "claimed_tokens" */
+export type Claimed_Tokens_Arr_Rel_Insert_Input = {
+  data: Array<Claimed_Tokens_Insert_Input>;
+  /** upsert condition */
+  on_conflict: InputMaybe<Claimed_Tokens_On_Conflict>;
+};
+
 /** aggregate avg on columns */
-export type Assets_Avg_Fields = {
-  __typename: 'assets_avg_fields';
-  assetValue: Maybe<Scalars['Float']>;
-  availableSupply: Maybe<Scalars['Float']>;
+export type Claimed_Tokens_Avg_Fields = {
+  __typename: 'claimed_tokens_avg_fields';
+  amounts: Maybe<Scalars['Float']>;
+  token_id: Maybe<Scalars['Float']>;
 };
 
-/** Boolean expression to filter rows from the table "assets". All fields are combined with a logical 'AND'. */
-export type Assets_Bool_Exp = {
-  _and: InputMaybe<Array<Assets_Bool_Exp>>;
-  _not: InputMaybe<Assets_Bool_Exp>;
-  _or: InputMaybe<Array<Assets_Bool_Exp>>;
-  assetId: InputMaybe<String_Comparison_Exp>;
-  assetName: InputMaybe<String_Comparison_Exp>;
-  assetType: InputMaybe<String_Comparison_Exp>;
-  assetValue: InputMaybe<Numeric_Comparison_Exp>;
-  availableSupply: InputMaybe<Int_Comparison_Exp>;
-  buyPrice: InputMaybe<String_Comparison_Exp>;
-  couponRate: InputMaybe<String_Comparison_Exp>;
-  currency: InputMaybe<String_Comparison_Exp>;
-  id: InputMaybe<Uuid_Comparison_Exp>;
-  maturity: InputMaybe<String_Comparison_Exp>;
-  paymentDate: InputMaybe<String_Comparison_Exp>;
-  payments: InputMaybe<String_Comparison_Exp>;
-  periodicity: InputMaybe<String_Comparison_Exp>;
-  sellprice: InputMaybe<String_Comparison_Exp>;
-  tokenized: InputMaybe<Boolean_Comparison_Exp>;
+/** order by avg() on columns of table "claimed_tokens" */
+export type Claimed_Tokens_Avg_Order_By = {
+  amounts: InputMaybe<Order_By>;
+  token_id: InputMaybe<Order_By>;
 };
 
-/** unique or primary key constraints on table "assets" */
-export enum Assets_Constraint {
-  /** unique or primary key constraint on columns "assetName", "assetType" */
-  AssetsPkey = 'assets_pkey'
+/** Boolean expression to filter rows from the table "claimed_tokens". All fields are combined with a logical 'AND'. */
+export type Claimed_Tokens_Bool_Exp = {
+  _and: InputMaybe<Array<Claimed_Tokens_Bool_Exp>>;
+  _not: InputMaybe<Claimed_Tokens_Bool_Exp>;
+  _or: InputMaybe<Array<Claimed_Tokens_Bool_Exp>>;
+  amounts: InputMaybe<Numeric_Comparison_Exp>;
+  contract_address: InputMaybe<String_Comparison_Exp>;
+  nft_type: InputMaybe<String_Comparison_Exp>;
+  token: InputMaybe<Tokens_Bool_Exp>;
+  token_id: InputMaybe<Numeric_Comparison_Exp>;
+  transactions: InputMaybe<Transactions_Bool_Exp>;
+  transactions_aggregate: InputMaybe<Transactions_Aggregate_Bool_Exp>;
+  user_address: InputMaybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "claimed_tokens" */
+export enum Claimed_Tokens_Constraint {
+  /** unique or primary key constraint on columns "user_address", "token_id", "nft_type" */
+  ClaimedTokensPkey = 'claimed_tokens_pkey'
 }
 
-/** input type for incrementing numeric columns in table "assets" */
-export type Assets_Inc_Input = {
-  assetValue: InputMaybe<Scalars['numeric']>;
-  availableSupply: InputMaybe<Scalars['Int']>;
+/** input type for incrementing numeric columns in table "claimed_tokens" */
+export type Claimed_Tokens_Inc_Input = {
+  amounts: InputMaybe<Scalars['numeric']>;
+  token_id: InputMaybe<Scalars['numeric']>;
 };
 
-/** input type for inserting data into table "assets" */
-export type Assets_Insert_Input = {
-  assetId: InputMaybe<Scalars['String']>;
-  assetName: InputMaybe<Scalars['String']>;
-  assetType: InputMaybe<Scalars['String']>;
-  assetValue: InputMaybe<Scalars['numeric']>;
-  availableSupply: InputMaybe<Scalars['Int']>;
-  buyPrice: InputMaybe<Scalars['String']>;
-  couponRate: InputMaybe<Scalars['String']>;
-  currency: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['uuid']>;
-  maturity: InputMaybe<Scalars['String']>;
-  paymentDate: InputMaybe<Scalars['String']>;
-  payments: InputMaybe<Scalars['String']>;
-  periodicity: InputMaybe<Scalars['String']>;
-  sellprice: InputMaybe<Scalars['String']>;
-  tokenized: InputMaybe<Scalars['Boolean']>;
+/** input type for inserting data into table "claimed_tokens" */
+export type Claimed_Tokens_Insert_Input = {
+  amounts: InputMaybe<Scalars['numeric']>;
+  contract_address: InputMaybe<Scalars['String']>;
+  nft_type: InputMaybe<Scalars['String']>;
+  token: InputMaybe<Tokens_Obj_Rel_Insert_Input>;
+  token_id: InputMaybe<Scalars['numeric']>;
+  transactions: InputMaybe<Transactions_Arr_Rel_Insert_Input>;
+  user_address: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
-export type Assets_Max_Fields = {
-  __typename: 'assets_max_fields';
-  assetId: Maybe<Scalars['String']>;
-  assetName: Maybe<Scalars['String']>;
-  assetType: Maybe<Scalars['String']>;
-  assetValue: Maybe<Scalars['numeric']>;
-  availableSupply: Maybe<Scalars['Int']>;
-  buyPrice: Maybe<Scalars['String']>;
-  couponRate: Maybe<Scalars['String']>;
-  currency: Maybe<Scalars['String']>;
-  id: Maybe<Scalars['uuid']>;
-  maturity: Maybe<Scalars['String']>;
-  paymentDate: Maybe<Scalars['String']>;
-  payments: Maybe<Scalars['String']>;
-  periodicity: Maybe<Scalars['String']>;
-  sellprice: Maybe<Scalars['String']>;
+export type Claimed_Tokens_Max_Fields = {
+  __typename: 'claimed_tokens_max_fields';
+  amounts: Maybe<Scalars['numeric']>;
+  contract_address: Maybe<Scalars['String']>;
+  nft_type: Maybe<Scalars['String']>;
+  token_id: Maybe<Scalars['numeric']>;
+  user_address: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "claimed_tokens" */
+export type Claimed_Tokens_Max_Order_By = {
+  amounts: InputMaybe<Order_By>;
+  contract_address: InputMaybe<Order_By>;
+  nft_type: InputMaybe<Order_By>;
+  token_id: InputMaybe<Order_By>;
+  user_address: InputMaybe<Order_By>;
 };
 
 /** aggregate min on columns */
-export type Assets_Min_Fields = {
-  __typename: 'assets_min_fields';
-  assetId: Maybe<Scalars['String']>;
-  assetName: Maybe<Scalars['String']>;
-  assetType: Maybe<Scalars['String']>;
-  assetValue: Maybe<Scalars['numeric']>;
-  availableSupply: Maybe<Scalars['Int']>;
-  buyPrice: Maybe<Scalars['String']>;
-  couponRate: Maybe<Scalars['String']>;
-  currency: Maybe<Scalars['String']>;
-  id: Maybe<Scalars['uuid']>;
-  maturity: Maybe<Scalars['String']>;
-  paymentDate: Maybe<Scalars['String']>;
-  payments: Maybe<Scalars['String']>;
-  periodicity: Maybe<Scalars['String']>;
-  sellprice: Maybe<Scalars['String']>;
+export type Claimed_Tokens_Min_Fields = {
+  __typename: 'claimed_tokens_min_fields';
+  amounts: Maybe<Scalars['numeric']>;
+  contract_address: Maybe<Scalars['String']>;
+  nft_type: Maybe<Scalars['String']>;
+  token_id: Maybe<Scalars['numeric']>;
+  user_address: Maybe<Scalars['String']>;
 };
 
-/** response of any mutation on the table "assets" */
-export type Assets_Mutation_Response = {
-  __typename: 'assets_mutation_response';
+/** order by min() on columns of table "claimed_tokens" */
+export type Claimed_Tokens_Min_Order_By = {
+  amounts: InputMaybe<Order_By>;
+  contract_address: InputMaybe<Order_By>;
+  nft_type: InputMaybe<Order_By>;
+  token_id: InputMaybe<Order_By>;
+  user_address: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "claimed_tokens" */
+export type Claimed_Tokens_Mutation_Response = {
+  __typename: 'claimed_tokens_mutation_response';
   /** number of rows affected by the mutation */
   affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
-  returning: Array<Assets>;
+  returning: Array<Claimed_Tokens>;
 };
 
-/** on_conflict condition type for table "assets" */
-export type Assets_On_Conflict = {
-  constraint: Assets_Constraint;
-  update_columns: Array<Assets_Update_Column>;
-  where: InputMaybe<Assets_Bool_Exp>;
+/** input type for inserting object relation for remote table "claimed_tokens" */
+export type Claimed_Tokens_Obj_Rel_Insert_Input = {
+  data: Claimed_Tokens_Insert_Input;
+  /** upsert condition */
+  on_conflict: InputMaybe<Claimed_Tokens_On_Conflict>;
 };
 
-/** Ordering options when selecting data from "assets". */
-export type Assets_Order_By = {
-  assetId: InputMaybe<Order_By>;
-  assetName: InputMaybe<Order_By>;
-  assetType: InputMaybe<Order_By>;
-  assetValue: InputMaybe<Order_By>;
-  availableSupply: InputMaybe<Order_By>;
-  buyPrice: InputMaybe<Order_By>;
-  couponRate: InputMaybe<Order_By>;
-  currency: InputMaybe<Order_By>;
-  id: InputMaybe<Order_By>;
-  maturity: InputMaybe<Order_By>;
-  paymentDate: InputMaybe<Order_By>;
-  payments: InputMaybe<Order_By>;
-  periodicity: InputMaybe<Order_By>;
-  sellprice: InputMaybe<Order_By>;
-  tokenized: InputMaybe<Order_By>;
+/** on_conflict condition type for table "claimed_tokens" */
+export type Claimed_Tokens_On_Conflict = {
+  constraint: Claimed_Tokens_Constraint;
+  update_columns: Array<Claimed_Tokens_Update_Column>;
+  where: InputMaybe<Claimed_Tokens_Bool_Exp>;
 };
 
-/** primary key columns input for table: assets */
-export type Assets_Pk_Columns_Input = {
-  assetName: Scalars['String'];
-  assetType: Scalars['String'];
+/** Ordering options when selecting data from "claimed_tokens". */
+export type Claimed_Tokens_Order_By = {
+  amounts: InputMaybe<Order_By>;
+  contract_address: InputMaybe<Order_By>;
+  nft_type: InputMaybe<Order_By>;
+  token: InputMaybe<Tokens_Order_By>;
+  token_id: InputMaybe<Order_By>;
+  transactions_aggregate: InputMaybe<Transactions_Aggregate_Order_By>;
+  user_address: InputMaybe<Order_By>;
 };
 
-/** select columns of table "assets" */
-export enum Assets_Select_Column {
+/** primary key columns input for table: claimed_tokens */
+export type Claimed_Tokens_Pk_Columns_Input = {
+  nft_type: Scalars['String'];
+  token_id: Scalars['numeric'];
+  user_address: Scalars['String'];
+};
+
+/** select columns of table "claimed_tokens" */
+export enum Claimed_Tokens_Select_Column {
   /** column name */
-  AssetId = 'assetId',
+  Amounts = 'amounts',
   /** column name */
-  AssetName = 'assetName',
+  ContractAddress = 'contract_address',
   /** column name */
-  AssetType = 'assetType',
+  NftType = 'nft_type',
   /** column name */
-  AssetValue = 'assetValue',
+  TokenId = 'token_id',
   /** column name */
-  AvailableSupply = 'availableSupply',
-  /** column name */
-  BuyPrice = 'buyPrice',
-  /** column name */
-  CouponRate = 'couponRate',
-  /** column name */
-  Currency = 'currency',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Maturity = 'maturity',
-  /** column name */
-  PaymentDate = 'paymentDate',
-  /** column name */
-  Payments = 'payments',
-  /** column name */
-  Periodicity = 'periodicity',
-  /** column name */
-  Sellprice = 'sellprice',
-  /** column name */
-  Tokenized = 'tokenized'
+  UserAddress = 'user_address'
 }
 
-/** input type for updating data in table "assets" */
-export type Assets_Set_Input = {
-  assetId: InputMaybe<Scalars['String']>;
-  assetName: InputMaybe<Scalars['String']>;
-  assetType: InputMaybe<Scalars['String']>;
-  assetValue: InputMaybe<Scalars['numeric']>;
-  availableSupply: InputMaybe<Scalars['Int']>;
-  buyPrice: InputMaybe<Scalars['String']>;
-  couponRate: InputMaybe<Scalars['String']>;
-  currency: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['uuid']>;
-  maturity: InputMaybe<Scalars['String']>;
-  paymentDate: InputMaybe<Scalars['String']>;
-  payments: InputMaybe<Scalars['String']>;
-  periodicity: InputMaybe<Scalars['String']>;
-  sellprice: InputMaybe<Scalars['String']>;
-  tokenized: InputMaybe<Scalars['Boolean']>;
+/** input type for updating data in table "claimed_tokens" */
+export type Claimed_Tokens_Set_Input = {
+  amounts: InputMaybe<Scalars['numeric']>;
+  contract_address: InputMaybe<Scalars['String']>;
+  nft_type: InputMaybe<Scalars['String']>;
+  token_id: InputMaybe<Scalars['numeric']>;
+  user_address: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate stddev on columns */
-export type Assets_Stddev_Fields = {
-  __typename: 'assets_stddev_fields';
-  assetValue: Maybe<Scalars['Float']>;
-  availableSupply: Maybe<Scalars['Float']>;
+export type Claimed_Tokens_Stddev_Fields = {
+  __typename: 'claimed_tokens_stddev_fields';
+  amounts: Maybe<Scalars['Float']>;
+  token_id: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "claimed_tokens" */
+export type Claimed_Tokens_Stddev_Order_By = {
+  amounts: InputMaybe<Order_By>;
+  token_id: InputMaybe<Order_By>;
 };
 
 /** aggregate stddev_pop on columns */
-export type Assets_Stddev_Pop_Fields = {
-  __typename: 'assets_stddev_pop_fields';
-  assetValue: Maybe<Scalars['Float']>;
-  availableSupply: Maybe<Scalars['Float']>;
+export type Claimed_Tokens_Stddev_Pop_Fields = {
+  __typename: 'claimed_tokens_stddev_pop_fields';
+  amounts: Maybe<Scalars['Float']>;
+  token_id: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "claimed_tokens" */
+export type Claimed_Tokens_Stddev_Pop_Order_By = {
+  amounts: InputMaybe<Order_By>;
+  token_id: InputMaybe<Order_By>;
 };
 
 /** aggregate stddev_samp on columns */
-export type Assets_Stddev_Samp_Fields = {
-  __typename: 'assets_stddev_samp_fields';
-  assetValue: Maybe<Scalars['Float']>;
-  availableSupply: Maybe<Scalars['Float']>;
+export type Claimed_Tokens_Stddev_Samp_Fields = {
+  __typename: 'claimed_tokens_stddev_samp_fields';
+  amounts: Maybe<Scalars['Float']>;
+  token_id: Maybe<Scalars['Float']>;
 };
 
-/** Streaming cursor of the table "assets" */
-export type Assets_Stream_Cursor_Input = {
+/** order by stddev_samp() on columns of table "claimed_tokens" */
+export type Claimed_Tokens_Stddev_Samp_Order_By = {
+  amounts: InputMaybe<Order_By>;
+  token_id: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "claimed_tokens" */
+export type Claimed_Tokens_Stream_Cursor_Input = {
   /** Stream column input with initial value */
-  initial_value: Assets_Stream_Cursor_Value_Input;
+  initial_value: Claimed_Tokens_Stream_Cursor_Value_Input;
   /** cursor ordering */
   ordering: InputMaybe<Cursor_Ordering>;
 };
 
 /** Initial value of the column from where the streaming should start */
-export type Assets_Stream_Cursor_Value_Input = {
-  assetId: InputMaybe<Scalars['String']>;
-  assetName: InputMaybe<Scalars['String']>;
-  assetType: InputMaybe<Scalars['String']>;
-  assetValue: InputMaybe<Scalars['numeric']>;
-  availableSupply: InputMaybe<Scalars['Int']>;
-  buyPrice: InputMaybe<Scalars['String']>;
-  couponRate: InputMaybe<Scalars['String']>;
-  currency: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['uuid']>;
-  maturity: InputMaybe<Scalars['String']>;
-  paymentDate: InputMaybe<Scalars['String']>;
-  payments: InputMaybe<Scalars['String']>;
-  periodicity: InputMaybe<Scalars['String']>;
-  sellprice: InputMaybe<Scalars['String']>;
-  tokenized: InputMaybe<Scalars['Boolean']>;
+export type Claimed_Tokens_Stream_Cursor_Value_Input = {
+  amounts: InputMaybe<Scalars['numeric']>;
+  contract_address: InputMaybe<Scalars['String']>;
+  nft_type: InputMaybe<Scalars['String']>;
+  token_id: InputMaybe<Scalars['numeric']>;
+  user_address: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate sum on columns */
-export type Assets_Sum_Fields = {
-  __typename: 'assets_sum_fields';
-  assetValue: Maybe<Scalars['numeric']>;
-  availableSupply: Maybe<Scalars['Int']>;
+export type Claimed_Tokens_Sum_Fields = {
+  __typename: 'claimed_tokens_sum_fields';
+  amounts: Maybe<Scalars['numeric']>;
+  token_id: Maybe<Scalars['numeric']>;
 };
 
-/** update columns of table "assets" */
-export enum Assets_Update_Column {
+/** order by sum() on columns of table "claimed_tokens" */
+export type Claimed_Tokens_Sum_Order_By = {
+  amounts: InputMaybe<Order_By>;
+  token_id: InputMaybe<Order_By>;
+};
+
+/** update columns of table "claimed_tokens" */
+export enum Claimed_Tokens_Update_Column {
   /** column name */
-  AssetId = 'assetId',
+  Amounts = 'amounts',
   /** column name */
-  AssetName = 'assetName',
+  ContractAddress = 'contract_address',
   /** column name */
-  AssetType = 'assetType',
+  NftType = 'nft_type',
   /** column name */
-  AssetValue = 'assetValue',
+  TokenId = 'token_id',
   /** column name */
-  AvailableSupply = 'availableSupply',
-  /** column name */
-  BuyPrice = 'buyPrice',
-  /** column name */
-  CouponRate = 'couponRate',
-  /** column name */
-  Currency = 'currency',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Maturity = 'maturity',
-  /** column name */
-  PaymentDate = 'paymentDate',
-  /** column name */
-  Payments = 'payments',
-  /** column name */
-  Periodicity = 'periodicity',
-  /** column name */
-  Sellprice = 'sellprice',
-  /** column name */
-  Tokenized = 'tokenized'
+  UserAddress = 'user_address'
 }
 
-export type Assets_Updates = {
+export type Claimed_Tokens_Updates = {
   /** increments the numeric columns with given value of the filtered values */
-  _inc: InputMaybe<Assets_Inc_Input>;
+  _inc: InputMaybe<Claimed_Tokens_Inc_Input>;
   /** sets the columns of the filtered rows to the given values */
-  _set: InputMaybe<Assets_Set_Input>;
+  _set: InputMaybe<Claimed_Tokens_Set_Input>;
   /** filter the rows which have to be updated */
-  where: Assets_Bool_Exp;
+  where: Claimed_Tokens_Bool_Exp;
 };
 
 /** aggregate var_pop on columns */
-export type Assets_Var_Pop_Fields = {
-  __typename: 'assets_var_pop_fields';
-  assetValue: Maybe<Scalars['Float']>;
-  availableSupply: Maybe<Scalars['Float']>;
+export type Claimed_Tokens_Var_Pop_Fields = {
+  __typename: 'claimed_tokens_var_pop_fields';
+  amounts: Maybe<Scalars['Float']>;
+  token_id: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "claimed_tokens" */
+export type Claimed_Tokens_Var_Pop_Order_By = {
+  amounts: InputMaybe<Order_By>;
+  token_id: InputMaybe<Order_By>;
 };
 
 /** aggregate var_samp on columns */
-export type Assets_Var_Samp_Fields = {
-  __typename: 'assets_var_samp_fields';
-  assetValue: Maybe<Scalars['Float']>;
-  availableSupply: Maybe<Scalars['Float']>;
+export type Claimed_Tokens_Var_Samp_Fields = {
+  __typename: 'claimed_tokens_var_samp_fields';
+  amounts: Maybe<Scalars['Float']>;
+  token_id: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "claimed_tokens" */
+export type Claimed_Tokens_Var_Samp_Order_By = {
+  amounts: InputMaybe<Order_By>;
+  token_id: InputMaybe<Order_By>;
 };
 
 /** aggregate variance on columns */
-export type Assets_Variance_Fields = {
-  __typename: 'assets_variance_fields';
-  assetValue: Maybe<Scalars['Float']>;
-  availableSupply: Maybe<Scalars['Float']>;
+export type Claimed_Tokens_Variance_Fields = {
+  __typename: 'claimed_tokens_variance_fields';
+  amounts: Maybe<Scalars['Float']>;
+  token_id: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "claimed_tokens" */
+export type Claimed_Tokens_Variance_Order_By = {
+  amounts: InputMaybe<Order_By>;
+  token_id: InputMaybe<Order_By>;
 };
 
 /** ordering argument of a cursor */
@@ -442,316 +453,72 @@ export enum Cursor_Ordering {
   Desc = 'DESC'
 }
 
-/** columns and relationships of "minted" */
-export type Minted = {
-  __typename: 'minted';
-  activeSupply: Scalars['numeric'];
-  assetId: Scalars['String'];
-  burned: Maybe<Scalars['numeric']>;
-  name: Scalars['String'];
-  owner: Maybe<Scalars['String']>;
-};
-
-/** aggregated selection of "minted" */
-export type Minted_Aggregate = {
-  __typename: 'minted_aggregate';
-  aggregate: Maybe<Minted_Aggregate_Fields>;
-  nodes: Array<Minted>;
-};
-
-/** aggregate fields of "minted" */
-export type Minted_Aggregate_Fields = {
-  __typename: 'minted_aggregate_fields';
-  avg: Maybe<Minted_Avg_Fields>;
-  count: Scalars['Int'];
-  max: Maybe<Minted_Max_Fields>;
-  min: Maybe<Minted_Min_Fields>;
-  stddev: Maybe<Minted_Stddev_Fields>;
-  stddev_pop: Maybe<Minted_Stddev_Pop_Fields>;
-  stddev_samp: Maybe<Minted_Stddev_Samp_Fields>;
-  sum: Maybe<Minted_Sum_Fields>;
-  var_pop: Maybe<Minted_Var_Pop_Fields>;
-  var_samp: Maybe<Minted_Var_Samp_Fields>;
-  variance: Maybe<Minted_Variance_Fields>;
-};
-
-
-/** aggregate fields of "minted" */
-export type Minted_Aggregate_FieldsCountArgs = {
-  columns: InputMaybe<Array<Minted_Select_Column>>;
-  distinct: InputMaybe<Scalars['Boolean']>;
-};
-
-/** aggregate avg on columns */
-export type Minted_Avg_Fields = {
-  __typename: 'minted_avg_fields';
-  activeSupply: Maybe<Scalars['Float']>;
-  burned: Maybe<Scalars['Float']>;
-};
-
-/** Boolean expression to filter rows from the table "minted". All fields are combined with a logical 'AND'. */
-export type Minted_Bool_Exp = {
-  _and: InputMaybe<Array<Minted_Bool_Exp>>;
-  _not: InputMaybe<Minted_Bool_Exp>;
-  _or: InputMaybe<Array<Minted_Bool_Exp>>;
-  activeSupply: InputMaybe<Numeric_Comparison_Exp>;
-  assetId: InputMaybe<String_Comparison_Exp>;
-  burned: InputMaybe<Numeric_Comparison_Exp>;
-  name: InputMaybe<String_Comparison_Exp>;
-  owner: InputMaybe<String_Comparison_Exp>;
-};
-
-/** unique or primary key constraints on table "minted" */
-export enum Minted_Constraint {
-  /** unique or primary key constraint on columns "name", "assetId" */
-  MintedPkey = 'minted_pkey'
-}
-
-/** input type for incrementing numeric columns in table "minted" */
-export type Minted_Inc_Input = {
-  activeSupply: InputMaybe<Scalars['numeric']>;
-  burned: InputMaybe<Scalars['numeric']>;
-};
-
-/** input type for inserting data into table "minted" */
-export type Minted_Insert_Input = {
-  activeSupply: InputMaybe<Scalars['numeric']>;
-  assetId: InputMaybe<Scalars['String']>;
-  burned: InputMaybe<Scalars['numeric']>;
-  name: InputMaybe<Scalars['String']>;
-  owner: InputMaybe<Scalars['String']>;
-};
-
-/** aggregate max on columns */
-export type Minted_Max_Fields = {
-  __typename: 'minted_max_fields';
-  activeSupply: Maybe<Scalars['numeric']>;
-  assetId: Maybe<Scalars['String']>;
-  burned: Maybe<Scalars['numeric']>;
-  name: Maybe<Scalars['String']>;
-  owner: Maybe<Scalars['String']>;
-};
-
-/** aggregate min on columns */
-export type Minted_Min_Fields = {
-  __typename: 'minted_min_fields';
-  activeSupply: Maybe<Scalars['numeric']>;
-  assetId: Maybe<Scalars['String']>;
-  burned: Maybe<Scalars['numeric']>;
-  name: Maybe<Scalars['String']>;
-  owner: Maybe<Scalars['String']>;
-};
-
-/** response of any mutation on the table "minted" */
-export type Minted_Mutation_Response = {
-  __typename: 'minted_mutation_response';
-  /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int'];
-  /** data from the rows affected by the mutation */
-  returning: Array<Minted>;
-};
-
-/** on_conflict condition type for table "minted" */
-export type Minted_On_Conflict = {
-  constraint: Minted_Constraint;
-  update_columns: Array<Minted_Update_Column>;
-  where: InputMaybe<Minted_Bool_Exp>;
-};
-
-/** Ordering options when selecting data from "minted". */
-export type Minted_Order_By = {
-  activeSupply: InputMaybe<Order_By>;
-  assetId: InputMaybe<Order_By>;
-  burned: InputMaybe<Order_By>;
-  name: InputMaybe<Order_By>;
-  owner: InputMaybe<Order_By>;
-};
-
-/** primary key columns input for table: minted */
-export type Minted_Pk_Columns_Input = {
-  assetId: Scalars['String'];
-  name: Scalars['String'];
-};
-
-/** select columns of table "minted" */
-export enum Minted_Select_Column {
-  /** column name */
-  ActiveSupply = 'activeSupply',
-  /** column name */
-  AssetId = 'assetId',
-  /** column name */
-  Burned = 'burned',
-  /** column name */
-  Name = 'name',
-  /** column name */
-  Owner = 'owner'
-}
-
-/** input type for updating data in table "minted" */
-export type Minted_Set_Input = {
-  activeSupply: InputMaybe<Scalars['numeric']>;
-  assetId: InputMaybe<Scalars['String']>;
-  burned: InputMaybe<Scalars['numeric']>;
-  name: InputMaybe<Scalars['String']>;
-  owner: InputMaybe<Scalars['String']>;
-};
-
-/** aggregate stddev on columns */
-export type Minted_Stddev_Fields = {
-  __typename: 'minted_stddev_fields';
-  activeSupply: Maybe<Scalars['Float']>;
-  burned: Maybe<Scalars['Float']>;
-};
-
-/** aggregate stddev_pop on columns */
-export type Minted_Stddev_Pop_Fields = {
-  __typename: 'minted_stddev_pop_fields';
-  activeSupply: Maybe<Scalars['Float']>;
-  burned: Maybe<Scalars['Float']>;
-};
-
-/** aggregate stddev_samp on columns */
-export type Minted_Stddev_Samp_Fields = {
-  __typename: 'minted_stddev_samp_fields';
-  activeSupply: Maybe<Scalars['Float']>;
-  burned: Maybe<Scalars['Float']>;
-};
-
-/** Streaming cursor of the table "minted" */
-export type Minted_Stream_Cursor_Input = {
-  /** Stream column input with initial value */
-  initial_value: Minted_Stream_Cursor_Value_Input;
-  /** cursor ordering */
-  ordering: InputMaybe<Cursor_Ordering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type Minted_Stream_Cursor_Value_Input = {
-  activeSupply: InputMaybe<Scalars['numeric']>;
-  assetId: InputMaybe<Scalars['String']>;
-  burned: InputMaybe<Scalars['numeric']>;
-  name: InputMaybe<Scalars['String']>;
-  owner: InputMaybe<Scalars['String']>;
-};
-
-/** aggregate sum on columns */
-export type Minted_Sum_Fields = {
-  __typename: 'minted_sum_fields';
-  activeSupply: Maybe<Scalars['numeric']>;
-  burned: Maybe<Scalars['numeric']>;
-};
-
-/** update columns of table "minted" */
-export enum Minted_Update_Column {
-  /** column name */
-  ActiveSupply = 'activeSupply',
-  /** column name */
-  AssetId = 'assetId',
-  /** column name */
-  Burned = 'burned',
-  /** column name */
-  Name = 'name',
-  /** column name */
-  Owner = 'owner'
-}
-
-export type Minted_Updates = {
-  /** increments the numeric columns with given value of the filtered values */
-  _inc: InputMaybe<Minted_Inc_Input>;
-  /** sets the columns of the filtered rows to the given values */
-  _set: InputMaybe<Minted_Set_Input>;
-  /** filter the rows which have to be updated */
-  where: Minted_Bool_Exp;
-};
-
-/** aggregate var_pop on columns */
-export type Minted_Var_Pop_Fields = {
-  __typename: 'minted_var_pop_fields';
-  activeSupply: Maybe<Scalars['Float']>;
-  burned: Maybe<Scalars['Float']>;
-};
-
-/** aggregate var_samp on columns */
-export type Minted_Var_Samp_Fields = {
-  __typename: 'minted_var_samp_fields';
-  activeSupply: Maybe<Scalars['Float']>;
-  burned: Maybe<Scalars['Float']>;
-};
-
-/** aggregate variance on columns */
-export type Minted_Variance_Fields = {
-  __typename: 'minted_variance_fields';
-  activeSupply: Maybe<Scalars['Float']>;
-  burned: Maybe<Scalars['Float']>;
+/** Boolean expression to compare columns of type "date". All fields are combined with logical 'AND'. */
+export type Date_Comparison_Exp = {
+  _eq: InputMaybe<Scalars['date']>;
+  _gt: InputMaybe<Scalars['date']>;
+  _gte: InputMaybe<Scalars['date']>;
+  _in: InputMaybe<Array<Scalars['date']>>;
+  _is_null: InputMaybe<Scalars['Boolean']>;
+  _lt: InputMaybe<Scalars['date']>;
+  _lte: InputMaybe<Scalars['date']>;
+  _neq: InputMaybe<Scalars['date']>;
+  _nin: InputMaybe<Array<Scalars['date']>>;
 };
 
 /** mutation root */
 export type Mutation_Root = {
   __typename: 'mutation_root';
-  /** delete data from the table: "assets" */
-  delete_assets: Maybe<Assets_Mutation_Response>;
-  /** delete single row from the table: "assets" */
-  delete_assets_by_pk: Maybe<Assets>;
-  /** delete data from the table: "minted" */
-  delete_minted: Maybe<Minted_Mutation_Response>;
-  /** delete single row from the table: "minted" */
-  delete_minted_by_pk: Maybe<Minted>;
-  /** delete data from the table: "token" */
-  delete_token: Maybe<Token_Mutation_Response>;
-  /** delete single row from the table: "token" */
-  delete_token_by_pk: Maybe<Token>;
-  /** delete data from the table: "user_setting" */
-  delete_user_setting: Maybe<User_Setting_Mutation_Response>;
-  /** delete single row from the table: "user_setting" */
-  delete_user_setting_by_pk: Maybe<User_Setting>;
+  /** delete data from the table: "claimed_tokens" */
+  delete_claimed_tokens: Maybe<Claimed_Tokens_Mutation_Response>;
+  /** delete single row from the table: "claimed_tokens" */
+  delete_claimed_tokens_by_pk: Maybe<Claimed_Tokens>;
+  /** delete data from the table: "tokens" */
+  delete_tokens: Maybe<Tokens_Mutation_Response>;
+  /** delete single row from the table: "tokens" */
+  delete_tokens_by_pk: Maybe<Tokens>;
+  /** delete data from the table: "transactions" */
+  delete_transactions: Maybe<Transactions_Mutation_Response>;
+  /** delete single row from the table: "transactions" */
+  delete_transactions_by_pk: Maybe<Transactions>;
   /** delete data from the table: "users" */
   delete_users: Maybe<Users_Mutation_Response>;
   /** delete single row from the table: "users" */
   delete_users_by_pk: Maybe<Users>;
-  /** insert data into the table: "assets" */
-  insert_assets: Maybe<Assets_Mutation_Response>;
-  /** insert a single row into the table: "assets" */
-  insert_assets_one: Maybe<Assets>;
-  /** insert data into the table: "minted" */
-  insert_minted: Maybe<Minted_Mutation_Response>;
-  /** insert a single row into the table: "minted" */
-  insert_minted_one: Maybe<Minted>;
-  /** insert data into the table: "token" */
-  insert_token: Maybe<Token_Mutation_Response>;
-  /** insert a single row into the table: "token" */
-  insert_token_one: Maybe<Token>;
-  /** insert data into the table: "user_setting" */
-  insert_user_setting: Maybe<User_Setting_Mutation_Response>;
-  /** insert a single row into the table: "user_setting" */
-  insert_user_setting_one: Maybe<User_Setting>;
+  /** insert data into the table: "claimed_tokens" */
+  insert_claimed_tokens: Maybe<Claimed_Tokens_Mutation_Response>;
+  /** insert a single row into the table: "claimed_tokens" */
+  insert_claimed_tokens_one: Maybe<Claimed_Tokens>;
+  /** insert data into the table: "tokens" */
+  insert_tokens: Maybe<Tokens_Mutation_Response>;
+  /** insert a single row into the table: "tokens" */
+  insert_tokens_one: Maybe<Tokens>;
+  /** insert data into the table: "transactions" */
+  insert_transactions: Maybe<Transactions_Mutation_Response>;
+  /** insert a single row into the table: "transactions" */
+  insert_transactions_one: Maybe<Transactions>;
   /** insert data into the table: "users" */
   insert_users: Maybe<Users_Mutation_Response>;
   /** insert a single row into the table: "users" */
   insert_users_one: Maybe<Users>;
-  /** update data of the table: "assets" */
-  update_assets: Maybe<Assets_Mutation_Response>;
-  /** update single row of the table: "assets" */
-  update_assets_by_pk: Maybe<Assets>;
-  /** update multiples rows of table: "assets" */
-  update_assets_many: Maybe<Array<Maybe<Assets_Mutation_Response>>>;
-  /** update data of the table: "minted" */
-  update_minted: Maybe<Minted_Mutation_Response>;
-  /** update single row of the table: "minted" */
-  update_minted_by_pk: Maybe<Minted>;
-  /** update multiples rows of table: "minted" */
-  update_minted_many: Maybe<Array<Maybe<Minted_Mutation_Response>>>;
-  /** update data of the table: "token" */
-  update_token: Maybe<Token_Mutation_Response>;
-  /** update single row of the table: "token" */
-  update_token_by_pk: Maybe<Token>;
-  /** update multiples rows of table: "token" */
-  update_token_many: Maybe<Array<Maybe<Token_Mutation_Response>>>;
-  /** update data of the table: "user_setting" */
-  update_user_setting: Maybe<User_Setting_Mutation_Response>;
-  /** update single row of the table: "user_setting" */
-  update_user_setting_by_pk: Maybe<User_Setting>;
-  /** update multiples rows of table: "user_setting" */
-  update_user_setting_many: Maybe<Array<Maybe<User_Setting_Mutation_Response>>>;
+  /** update data of the table: "claimed_tokens" */
+  update_claimed_tokens: Maybe<Claimed_Tokens_Mutation_Response>;
+  /** update single row of the table: "claimed_tokens" */
+  update_claimed_tokens_by_pk: Maybe<Claimed_Tokens>;
+  /** update multiples rows of table: "claimed_tokens" */
+  update_claimed_tokens_many: Maybe<Array<Maybe<Claimed_Tokens_Mutation_Response>>>;
+  /** update data of the table: "tokens" */
+  update_tokens: Maybe<Tokens_Mutation_Response>;
+  /** update single row of the table: "tokens" */
+  update_tokens_by_pk: Maybe<Tokens>;
+  /** update multiples rows of table: "tokens" */
+  update_tokens_many: Maybe<Array<Maybe<Tokens_Mutation_Response>>>;
+  /** update data of the table: "transactions" */
+  update_transactions: Maybe<Transactions_Mutation_Response>;
+  /** update single row of the table: "transactions" */
+  update_transactions_by_pk: Maybe<Transactions>;
+  /** update multiples rows of table: "transactions" */
+  update_transactions_many: Maybe<Array<Maybe<Transactions_Mutation_Response>>>;
   /** update data of the table: "users" */
   update_users: Maybe<Users_Mutation_Response>;
   /** update single row of the table: "users" */
@@ -762,52 +529,42 @@ export type Mutation_Root = {
 
 
 /** mutation root */
-export type Mutation_RootDelete_AssetsArgs = {
-  where: Assets_Bool_Exp;
+export type Mutation_RootDelete_Claimed_TokensArgs = {
+  where: Claimed_Tokens_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootDelete_Assets_By_PkArgs = {
-  assetName: Scalars['String'];
-  assetType: Scalars['String'];
+export type Mutation_RootDelete_Claimed_Tokens_By_PkArgs = {
+  nft_type: Scalars['String'];
+  token_id: Scalars['numeric'];
+  user_address: Scalars['String'];
 };
 
 
 /** mutation root */
-export type Mutation_RootDelete_MintedArgs = {
-  where: Minted_Bool_Exp;
+export type Mutation_RootDelete_TokensArgs = {
+  where: Tokens_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootDelete_Minted_By_PkArgs = {
-  assetId: Scalars['String'];
-  name: Scalars['String'];
+export type Mutation_RootDelete_Tokens_By_PkArgs = {
+  contract_address: Scalars['String'];
+  nft_type: Scalars['String'];
+  token_id: Scalars['numeric'];
 };
 
 
 /** mutation root */
-export type Mutation_RootDelete_TokenArgs = {
-  where: Token_Bool_Exp;
+export type Mutation_RootDelete_TransactionsArgs = {
+  where: Transactions_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootDelete_Token_By_PkArgs = {
-  id: Scalars['uuid'];
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_User_SettingArgs = {
-  where: User_Setting_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_User_Setting_By_PkArgs = {
-  id: Scalars['Int'];
+export type Mutation_RootDelete_Transactions_By_PkArgs = {
+  uuid: Scalars['uuid'];
 };
 
 
@@ -819,63 +576,49 @@ export type Mutation_RootDelete_UsersArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete_Users_By_PkArgs = {
-  id: Scalars['uuid'];
+  user_address: Scalars['String'];
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_AssetsArgs = {
-  objects: Array<Assets_Insert_Input>;
-  on_conflict: InputMaybe<Assets_On_Conflict>;
+export type Mutation_RootInsert_Claimed_TokensArgs = {
+  objects: Array<Claimed_Tokens_Insert_Input>;
+  on_conflict: InputMaybe<Claimed_Tokens_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_Assets_OneArgs = {
-  object: Assets_Insert_Input;
-  on_conflict: InputMaybe<Assets_On_Conflict>;
+export type Mutation_RootInsert_Claimed_Tokens_OneArgs = {
+  object: Claimed_Tokens_Insert_Input;
+  on_conflict: InputMaybe<Claimed_Tokens_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_MintedArgs = {
-  objects: Array<Minted_Insert_Input>;
-  on_conflict: InputMaybe<Minted_On_Conflict>;
+export type Mutation_RootInsert_TokensArgs = {
+  objects: Array<Tokens_Insert_Input>;
+  on_conflict: InputMaybe<Tokens_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_Minted_OneArgs = {
-  object: Minted_Insert_Input;
-  on_conflict: InputMaybe<Minted_On_Conflict>;
+export type Mutation_RootInsert_Tokens_OneArgs = {
+  object: Tokens_Insert_Input;
+  on_conflict: InputMaybe<Tokens_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_TokenArgs = {
-  objects: Array<Token_Insert_Input>;
-  on_conflict: InputMaybe<Token_On_Conflict>;
+export type Mutation_RootInsert_TransactionsArgs = {
+  objects: Array<Transactions_Insert_Input>;
+  on_conflict: InputMaybe<Transactions_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_Token_OneArgs = {
-  object: Token_Insert_Input;
-  on_conflict: InputMaybe<Token_On_Conflict>;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_User_SettingArgs = {
-  objects: Array<User_Setting_Insert_Input>;
-  on_conflict: InputMaybe<User_Setting_On_Conflict>;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_User_Setting_OneArgs = {
-  object: User_Setting_Insert_Input;
-  on_conflict: InputMaybe<User_Setting_On_Conflict>;
+export type Mutation_RootInsert_Transactions_OneArgs = {
+  object: Transactions_Insert_Input;
+  on_conflict: InputMaybe<Transactions_On_Conflict>;
 };
 
 
@@ -894,90 +637,68 @@ export type Mutation_RootInsert_Users_OneArgs = {
 
 
 /** mutation root */
-export type Mutation_RootUpdate_AssetsArgs = {
-  _inc: InputMaybe<Assets_Inc_Input>;
-  _set: InputMaybe<Assets_Set_Input>;
-  where: Assets_Bool_Exp;
+export type Mutation_RootUpdate_Claimed_TokensArgs = {
+  _inc: InputMaybe<Claimed_Tokens_Inc_Input>;
+  _set: InputMaybe<Claimed_Tokens_Set_Input>;
+  where: Claimed_Tokens_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_Assets_By_PkArgs = {
-  _inc: InputMaybe<Assets_Inc_Input>;
-  _set: InputMaybe<Assets_Set_Input>;
-  pk_columns: Assets_Pk_Columns_Input;
+export type Mutation_RootUpdate_Claimed_Tokens_By_PkArgs = {
+  _inc: InputMaybe<Claimed_Tokens_Inc_Input>;
+  _set: InputMaybe<Claimed_Tokens_Set_Input>;
+  pk_columns: Claimed_Tokens_Pk_Columns_Input;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_Assets_ManyArgs = {
-  updates: Array<Assets_Updates>;
+export type Mutation_RootUpdate_Claimed_Tokens_ManyArgs = {
+  updates: Array<Claimed_Tokens_Updates>;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_MintedArgs = {
-  _inc: InputMaybe<Minted_Inc_Input>;
-  _set: InputMaybe<Minted_Set_Input>;
-  where: Minted_Bool_Exp;
+export type Mutation_RootUpdate_TokensArgs = {
+  _inc: InputMaybe<Tokens_Inc_Input>;
+  _set: InputMaybe<Tokens_Set_Input>;
+  where: Tokens_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_Minted_By_PkArgs = {
-  _inc: InputMaybe<Minted_Inc_Input>;
-  _set: InputMaybe<Minted_Set_Input>;
-  pk_columns: Minted_Pk_Columns_Input;
+export type Mutation_RootUpdate_Tokens_By_PkArgs = {
+  _inc: InputMaybe<Tokens_Inc_Input>;
+  _set: InputMaybe<Tokens_Set_Input>;
+  pk_columns: Tokens_Pk_Columns_Input;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_Minted_ManyArgs = {
-  updates: Array<Minted_Updates>;
+export type Mutation_RootUpdate_Tokens_ManyArgs = {
+  updates: Array<Tokens_Updates>;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_TokenArgs = {
-  _inc: InputMaybe<Token_Inc_Input>;
-  _set: InputMaybe<Token_Set_Input>;
-  where: Token_Bool_Exp;
+export type Mutation_RootUpdate_TransactionsArgs = {
+  _inc: InputMaybe<Transactions_Inc_Input>;
+  _set: InputMaybe<Transactions_Set_Input>;
+  where: Transactions_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_Token_By_PkArgs = {
-  _inc: InputMaybe<Token_Inc_Input>;
-  _set: InputMaybe<Token_Set_Input>;
-  pk_columns: Token_Pk_Columns_Input;
+export type Mutation_RootUpdate_Transactions_By_PkArgs = {
+  _inc: InputMaybe<Transactions_Inc_Input>;
+  _set: InputMaybe<Transactions_Set_Input>;
+  pk_columns: Transactions_Pk_Columns_Input;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_Token_ManyArgs = {
-  updates: Array<Token_Updates>;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_User_SettingArgs = {
-  _inc: InputMaybe<User_Setting_Inc_Input>;
-  _set: InputMaybe<User_Setting_Set_Input>;
-  where: User_Setting_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_User_Setting_By_PkArgs = {
-  _inc: InputMaybe<User_Setting_Inc_Input>;
-  _set: InputMaybe<User_Setting_Set_Input>;
-  pk_columns: User_Setting_Pk_Columns_Input;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_User_Setting_ManyArgs = {
-  updates: Array<User_Setting_Updates>;
+export type Mutation_RootUpdate_Transactions_ManyArgs = {
+  updates: Array<Transactions_Updates>;
 };
 
 
@@ -1031,30 +752,24 @@ export enum Order_By {
 
 export type Query_Root = {
   __typename: 'query_root';
-  /** fetch data from the table: "assets" */
-  assets: Array<Assets>;
-  /** fetch aggregated fields from the table: "assets" */
-  assets_aggregate: Assets_Aggregate;
-  /** fetch data from the table: "assets" using primary key columns */
-  assets_by_pk: Maybe<Assets>;
-  /** fetch data from the table: "minted" */
-  minted: Array<Minted>;
-  /** fetch aggregated fields from the table: "minted" */
-  minted_aggregate: Minted_Aggregate;
-  /** fetch data from the table: "minted" using primary key columns */
-  minted_by_pk: Maybe<Minted>;
-  /** fetch data from the table: "token" */
-  token: Array<Token>;
-  /** fetch aggregated fields from the table: "token" */
-  token_aggregate: Token_Aggregate;
-  /** fetch data from the table: "token" using primary key columns */
-  token_by_pk: Maybe<Token>;
-  /** fetch data from the table: "user_setting" */
-  user_setting: Array<User_Setting>;
-  /** fetch aggregated fields from the table: "user_setting" */
-  user_setting_aggregate: User_Setting_Aggregate;
-  /** fetch data from the table: "user_setting" using primary key columns */
-  user_setting_by_pk: Maybe<User_Setting>;
+  /** An array relationship */
+  claimed_tokens: Array<Claimed_Tokens>;
+  /** An aggregate relationship */
+  claimed_tokens_aggregate: Claimed_Tokens_Aggregate;
+  /** fetch data from the table: "claimed_tokens" using primary key columns */
+  claimed_tokens_by_pk: Maybe<Claimed_Tokens>;
+  /** fetch data from the table: "tokens" */
+  tokens: Array<Tokens>;
+  /** fetch aggregated fields from the table: "tokens" */
+  tokens_aggregate: Tokens_Aggregate;
+  /** fetch data from the table: "tokens" using primary key columns */
+  tokens_by_pk: Maybe<Tokens>;
+  /** An array relationship */
+  transactions: Array<Transactions>;
+  /** An aggregate relationship */
+  transactions_aggregate: Transactions_Aggregate;
+  /** fetch data from the table: "transactions" using primary key columns */
+  transactions_by_pk: Maybe<Transactions>;
   /** fetch data from the table: "users" */
   users: Array<Users>;
   /** fetch aggregated fields from the table: "users" */
@@ -1064,97 +779,76 @@ export type Query_Root = {
 };
 
 
-export type Query_RootAssetsArgs = {
-  distinct_on: InputMaybe<Array<Assets_Select_Column>>;
+export type Query_RootClaimed_TokensArgs = {
+  distinct_on: InputMaybe<Array<Claimed_Tokens_Select_Column>>;
   limit: InputMaybe<Scalars['Int']>;
   offset: InputMaybe<Scalars['Int']>;
-  order_by: InputMaybe<Array<Assets_Order_By>>;
-  where: InputMaybe<Assets_Bool_Exp>;
+  order_by: InputMaybe<Array<Claimed_Tokens_Order_By>>;
+  where: InputMaybe<Claimed_Tokens_Bool_Exp>;
 };
 
 
-export type Query_RootAssets_AggregateArgs = {
-  distinct_on: InputMaybe<Array<Assets_Select_Column>>;
+export type Query_RootClaimed_Tokens_AggregateArgs = {
+  distinct_on: InputMaybe<Array<Claimed_Tokens_Select_Column>>;
   limit: InputMaybe<Scalars['Int']>;
   offset: InputMaybe<Scalars['Int']>;
-  order_by: InputMaybe<Array<Assets_Order_By>>;
-  where: InputMaybe<Assets_Bool_Exp>;
+  order_by: InputMaybe<Array<Claimed_Tokens_Order_By>>;
+  where: InputMaybe<Claimed_Tokens_Bool_Exp>;
 };
 
 
-export type Query_RootAssets_By_PkArgs = {
-  assetName: Scalars['String'];
-  assetType: Scalars['String'];
+export type Query_RootClaimed_Tokens_By_PkArgs = {
+  nft_type: Scalars['String'];
+  token_id: Scalars['numeric'];
+  user_address: Scalars['String'];
 };
 
 
-export type Query_RootMintedArgs = {
-  distinct_on: InputMaybe<Array<Minted_Select_Column>>;
+export type Query_RootTokensArgs = {
+  distinct_on: InputMaybe<Array<Tokens_Select_Column>>;
   limit: InputMaybe<Scalars['Int']>;
   offset: InputMaybe<Scalars['Int']>;
-  order_by: InputMaybe<Array<Minted_Order_By>>;
-  where: InputMaybe<Minted_Bool_Exp>;
+  order_by: InputMaybe<Array<Tokens_Order_By>>;
+  where: InputMaybe<Tokens_Bool_Exp>;
 };
 
 
-export type Query_RootMinted_AggregateArgs = {
-  distinct_on: InputMaybe<Array<Minted_Select_Column>>;
+export type Query_RootTokens_AggregateArgs = {
+  distinct_on: InputMaybe<Array<Tokens_Select_Column>>;
   limit: InputMaybe<Scalars['Int']>;
   offset: InputMaybe<Scalars['Int']>;
-  order_by: InputMaybe<Array<Minted_Order_By>>;
-  where: InputMaybe<Minted_Bool_Exp>;
+  order_by: InputMaybe<Array<Tokens_Order_By>>;
+  where: InputMaybe<Tokens_Bool_Exp>;
 };
 
 
-export type Query_RootMinted_By_PkArgs = {
-  assetId: Scalars['String'];
-  name: Scalars['String'];
+export type Query_RootTokens_By_PkArgs = {
+  contract_address: Scalars['String'];
+  nft_type: Scalars['String'];
+  token_id: Scalars['numeric'];
 };
 
 
-export type Query_RootTokenArgs = {
-  distinct_on: InputMaybe<Array<Token_Select_Column>>;
+export type Query_RootTransactionsArgs = {
+  distinct_on: InputMaybe<Array<Transactions_Select_Column>>;
   limit: InputMaybe<Scalars['Int']>;
   offset: InputMaybe<Scalars['Int']>;
-  order_by: InputMaybe<Array<Token_Order_By>>;
-  where: InputMaybe<Token_Bool_Exp>;
+  order_by: InputMaybe<Array<Transactions_Order_By>>;
+  where: InputMaybe<Transactions_Bool_Exp>;
 };
 
 
-export type Query_RootToken_AggregateArgs = {
-  distinct_on: InputMaybe<Array<Token_Select_Column>>;
+export type Query_RootTransactions_AggregateArgs = {
+  distinct_on: InputMaybe<Array<Transactions_Select_Column>>;
   limit: InputMaybe<Scalars['Int']>;
   offset: InputMaybe<Scalars['Int']>;
-  order_by: InputMaybe<Array<Token_Order_By>>;
-  where: InputMaybe<Token_Bool_Exp>;
+  order_by: InputMaybe<Array<Transactions_Order_By>>;
+  where: InputMaybe<Transactions_Bool_Exp>;
 };
 
 
-export type Query_RootToken_By_PkArgs = {
-  id: Scalars['uuid'];
-};
-
-
-export type Query_RootUser_SettingArgs = {
-  distinct_on: InputMaybe<Array<User_Setting_Select_Column>>;
-  limit: InputMaybe<Scalars['Int']>;
-  offset: InputMaybe<Scalars['Int']>;
-  order_by: InputMaybe<Array<User_Setting_Order_By>>;
-  where: InputMaybe<User_Setting_Bool_Exp>;
-};
-
-
-export type Query_RootUser_Setting_AggregateArgs = {
-  distinct_on: InputMaybe<Array<User_Setting_Select_Column>>;
-  limit: InputMaybe<Scalars['Int']>;
-  offset: InputMaybe<Scalars['Int']>;
-  order_by: InputMaybe<Array<User_Setting_Order_By>>;
-  where: InputMaybe<User_Setting_Bool_Exp>;
-};
-
-
-export type Query_RootUser_Setting_By_PkArgs = {
-  id: Scalars['Int'];
+export type Query_RootTransactions_By_PkArgs = {
+  uuid: Scalars['uuid'];
 };
 
 
@@ -1177,43 +871,35 @@ export type Query_RootUsers_AggregateArgs = {
 
 
 export type Query_RootUsers_By_PkArgs = {
-  id: Scalars['uuid'];
+  user_address: Scalars['String'];
 };
 
 export type Subscription_Root = {
   __typename: 'subscription_root';
-  /** fetch data from the table: "assets" */
-  assets: Array<Assets>;
-  /** fetch aggregated fields from the table: "assets" */
-  assets_aggregate: Assets_Aggregate;
-  /** fetch data from the table: "assets" using primary key columns */
-  assets_by_pk: Maybe<Assets>;
-  /** fetch data from the table in a streaming manner: "assets" */
-  assets_stream: Array<Assets>;
-  /** fetch data from the table: "minted" */
-  minted: Array<Minted>;
-  /** fetch aggregated fields from the table: "minted" */
-  minted_aggregate: Minted_Aggregate;
-  /** fetch data from the table: "minted" using primary key columns */
-  minted_by_pk: Maybe<Minted>;
-  /** fetch data from the table in a streaming manner: "minted" */
-  minted_stream: Array<Minted>;
-  /** fetch data from the table: "token" */
-  token: Array<Token>;
-  /** fetch aggregated fields from the table: "token" */
-  token_aggregate: Token_Aggregate;
-  /** fetch data from the table: "token" using primary key columns */
-  token_by_pk: Maybe<Token>;
-  /** fetch data from the table in a streaming manner: "token" */
-  token_stream: Array<Token>;
-  /** fetch data from the table: "user_setting" */
-  user_setting: Array<User_Setting>;
-  /** fetch aggregated fields from the table: "user_setting" */
-  user_setting_aggregate: User_Setting_Aggregate;
-  /** fetch data from the table: "user_setting" using primary key columns */
-  user_setting_by_pk: Maybe<User_Setting>;
-  /** fetch data from the table in a streaming manner: "user_setting" */
-  user_setting_stream: Array<User_Setting>;
+  /** An array relationship */
+  claimed_tokens: Array<Claimed_Tokens>;
+  /** An aggregate relationship */
+  claimed_tokens_aggregate: Claimed_Tokens_Aggregate;
+  /** fetch data from the table: "claimed_tokens" using primary key columns */
+  claimed_tokens_by_pk: Maybe<Claimed_Tokens>;
+  /** fetch data from the table in a streaming manner: "claimed_tokens" */
+  claimed_tokens_stream: Array<Claimed_Tokens>;
+  /** fetch data from the table: "tokens" */
+  tokens: Array<Tokens>;
+  /** fetch aggregated fields from the table: "tokens" */
+  tokens_aggregate: Tokens_Aggregate;
+  /** fetch data from the table: "tokens" using primary key columns */
+  tokens_by_pk: Maybe<Tokens>;
+  /** fetch data from the table in a streaming manner: "tokens" */
+  tokens_stream: Array<Tokens>;
+  /** An array relationship */
+  transactions: Array<Transactions>;
+  /** An aggregate relationship */
+  transactions_aggregate: Transactions_Aggregate;
+  /** fetch data from the table: "transactions" using primary key columns */
+  transactions_by_pk: Maybe<Transactions>;
+  /** fetch data from the table in a streaming manner: "transactions" */
+  transactions_stream: Array<Transactions>;
   /** fetch data from the table: "users" */
   users: Array<Users>;
   /** fetch aggregated fields from the table: "users" */
@@ -1225,125 +911,97 @@ export type Subscription_Root = {
 };
 
 
-export type Subscription_RootAssetsArgs = {
-  distinct_on: InputMaybe<Array<Assets_Select_Column>>;
+export type Subscription_RootClaimed_TokensArgs = {
+  distinct_on: InputMaybe<Array<Claimed_Tokens_Select_Column>>;
   limit: InputMaybe<Scalars['Int']>;
   offset: InputMaybe<Scalars['Int']>;
-  order_by: InputMaybe<Array<Assets_Order_By>>;
-  where: InputMaybe<Assets_Bool_Exp>;
+  order_by: InputMaybe<Array<Claimed_Tokens_Order_By>>;
+  where: InputMaybe<Claimed_Tokens_Bool_Exp>;
 };
 
 
-export type Subscription_RootAssets_AggregateArgs = {
-  distinct_on: InputMaybe<Array<Assets_Select_Column>>;
+export type Subscription_RootClaimed_Tokens_AggregateArgs = {
+  distinct_on: InputMaybe<Array<Claimed_Tokens_Select_Column>>;
   limit: InputMaybe<Scalars['Int']>;
   offset: InputMaybe<Scalars['Int']>;
-  order_by: InputMaybe<Array<Assets_Order_By>>;
-  where: InputMaybe<Assets_Bool_Exp>;
+  order_by: InputMaybe<Array<Claimed_Tokens_Order_By>>;
+  where: InputMaybe<Claimed_Tokens_Bool_Exp>;
 };
 
 
-export type Subscription_RootAssets_By_PkArgs = {
-  assetName: Scalars['String'];
-  assetType: Scalars['String'];
+export type Subscription_RootClaimed_Tokens_By_PkArgs = {
+  nft_type: Scalars['String'];
+  token_id: Scalars['numeric'];
+  user_address: Scalars['String'];
 };
 
 
-export type Subscription_RootAssets_StreamArgs = {
+export type Subscription_RootClaimed_Tokens_StreamArgs = {
   batch_size: Scalars['Int'];
-  cursor: Array<InputMaybe<Assets_Stream_Cursor_Input>>;
-  where: InputMaybe<Assets_Bool_Exp>;
+  cursor: Array<InputMaybe<Claimed_Tokens_Stream_Cursor_Input>>;
+  where: InputMaybe<Claimed_Tokens_Bool_Exp>;
 };
 
 
-export type Subscription_RootMintedArgs = {
-  distinct_on: InputMaybe<Array<Minted_Select_Column>>;
+export type Subscription_RootTokensArgs = {
+  distinct_on: InputMaybe<Array<Tokens_Select_Column>>;
   limit: InputMaybe<Scalars['Int']>;
   offset: InputMaybe<Scalars['Int']>;
-  order_by: InputMaybe<Array<Minted_Order_By>>;
-  where: InputMaybe<Minted_Bool_Exp>;
+  order_by: InputMaybe<Array<Tokens_Order_By>>;
+  where: InputMaybe<Tokens_Bool_Exp>;
 };
 
 
-export type Subscription_RootMinted_AggregateArgs = {
-  distinct_on: InputMaybe<Array<Minted_Select_Column>>;
+export type Subscription_RootTokens_AggregateArgs = {
+  distinct_on: InputMaybe<Array<Tokens_Select_Column>>;
   limit: InputMaybe<Scalars['Int']>;
   offset: InputMaybe<Scalars['Int']>;
-  order_by: InputMaybe<Array<Minted_Order_By>>;
-  where: InputMaybe<Minted_Bool_Exp>;
+  order_by: InputMaybe<Array<Tokens_Order_By>>;
+  where: InputMaybe<Tokens_Bool_Exp>;
 };
 
 
-export type Subscription_RootMinted_By_PkArgs = {
-  assetId: Scalars['String'];
-  name: Scalars['String'];
+export type Subscription_RootTokens_By_PkArgs = {
+  contract_address: Scalars['String'];
+  nft_type: Scalars['String'];
+  token_id: Scalars['numeric'];
 };
 
 
-export type Subscription_RootMinted_StreamArgs = {
+export type Subscription_RootTokens_StreamArgs = {
   batch_size: Scalars['Int'];
-  cursor: Array<InputMaybe<Minted_Stream_Cursor_Input>>;
-  where: InputMaybe<Minted_Bool_Exp>;
+  cursor: Array<InputMaybe<Tokens_Stream_Cursor_Input>>;
+  where: InputMaybe<Tokens_Bool_Exp>;
 };
 
 
-export type Subscription_RootTokenArgs = {
-  distinct_on: InputMaybe<Array<Token_Select_Column>>;
+export type Subscription_RootTransactionsArgs = {
+  distinct_on: InputMaybe<Array<Transactions_Select_Column>>;
   limit: InputMaybe<Scalars['Int']>;
   offset: InputMaybe<Scalars['Int']>;
-  order_by: InputMaybe<Array<Token_Order_By>>;
-  where: InputMaybe<Token_Bool_Exp>;
+  order_by: InputMaybe<Array<Transactions_Order_By>>;
+  where: InputMaybe<Transactions_Bool_Exp>;
 };
 
 
-export type Subscription_RootToken_AggregateArgs = {
-  distinct_on: InputMaybe<Array<Token_Select_Column>>;
+export type Subscription_RootTransactions_AggregateArgs = {
+  distinct_on: InputMaybe<Array<Transactions_Select_Column>>;
   limit: InputMaybe<Scalars['Int']>;
   offset: InputMaybe<Scalars['Int']>;
-  order_by: InputMaybe<Array<Token_Order_By>>;
-  where: InputMaybe<Token_Bool_Exp>;
+  order_by: InputMaybe<Array<Transactions_Order_By>>;
+  where: InputMaybe<Transactions_Bool_Exp>;
 };
 
 
-export type Subscription_RootToken_By_PkArgs = {
-  id: Scalars['uuid'];
+export type Subscription_RootTransactions_By_PkArgs = {
+  uuid: Scalars['uuid'];
 };
 
 
-export type Subscription_RootToken_StreamArgs = {
+export type Subscription_RootTransactions_StreamArgs = {
   batch_size: Scalars['Int'];
-  cursor: Array<InputMaybe<Token_Stream_Cursor_Input>>;
-  where: InputMaybe<Token_Bool_Exp>;
-};
-
-
-export type Subscription_RootUser_SettingArgs = {
-  distinct_on: InputMaybe<Array<User_Setting_Select_Column>>;
-  limit: InputMaybe<Scalars['Int']>;
-  offset: InputMaybe<Scalars['Int']>;
-  order_by: InputMaybe<Array<User_Setting_Order_By>>;
-  where: InputMaybe<User_Setting_Bool_Exp>;
-};
-
-
-export type Subscription_RootUser_Setting_AggregateArgs = {
-  distinct_on: InputMaybe<Array<User_Setting_Select_Column>>;
-  limit: InputMaybe<Scalars['Int']>;
-  offset: InputMaybe<Scalars['Int']>;
-  order_by: InputMaybe<Array<User_Setting_Order_By>>;
-  where: InputMaybe<User_Setting_Bool_Exp>;
-};
-
-
-export type Subscription_RootUser_Setting_By_PkArgs = {
-  id: Scalars['Int'];
-};
-
-
-export type Subscription_RootUser_Setting_StreamArgs = {
-  batch_size: Scalars['Int'];
-  cursor: Array<InputMaybe<User_Setting_Stream_Cursor_Input>>;
-  where: InputMaybe<User_Setting_Bool_Exp>;
+  cursor: Array<InputMaybe<Transactions_Stream_Cursor_Input>>;
+  where: InputMaybe<Transactions_Bool_Exp>;
 };
 
 
@@ -1366,7 +1024,7 @@ export type Subscription_RootUsers_AggregateArgs = {
 
 
 export type Subscription_RootUsers_By_PkArgs = {
-  id: Scalars['uuid'];
+  user_address: Scalars['String'];
 };
 
 
@@ -1376,517 +1034,826 @@ export type Subscription_RootUsers_StreamArgs = {
   where: InputMaybe<Users_Bool_Exp>;
 };
 
-/** columns and relationships of "token" */
-export type Token = {
-  __typename: 'token';
-  assetId: Scalars['String'];
-  faceValue: Scalars['String'];
-  id: Scalars['uuid'];
-  maturityStamp: Maybe<Scalars['numeric']>;
-  minted: Scalars['Boolean'];
+/** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
+export type Timestamptz_Comparison_Exp = {
+  _eq: InputMaybe<Scalars['timestamptz']>;
+  _gt: InputMaybe<Scalars['timestamptz']>;
+  _gte: InputMaybe<Scalars['timestamptz']>;
+  _in: InputMaybe<Array<Scalars['timestamptz']>>;
+  _is_null: InputMaybe<Scalars['Boolean']>;
+  _lt: InputMaybe<Scalars['timestamptz']>;
+  _lte: InputMaybe<Scalars['timestamptz']>;
+  _neq: InputMaybe<Scalars['timestamptz']>;
+  _nin: InputMaybe<Array<Scalars['timestamptz']>>;
+};
+
+/** columns and relationships of "tokens" */
+export type Tokens = {
+  __typename: 'tokens';
+  /** An array relationship */
+  claimed_tokens: Array<Claimed_Tokens>;
+  /** An aggregate relationship */
+  claimed_tokens_aggregate: Claimed_Tokens_Aggregate;
+  contract_address: Scalars['String'];
+  description: Scalars['String'];
+  json_cid: Maybe<Scalars['String']>;
   name: Scalars['String'];
-  supply: Scalars['Int'];
-  totalSupply: Scalars['Int'];
+  nft_type: Scalars['String'];
+  price: Scalars['numeric'];
+  supply: Scalars['numeric'];
+  token_id: Scalars['numeric'];
 };
 
-/** aggregated selection of "token" */
-export type Token_Aggregate = {
-  __typename: 'token_aggregate';
-  aggregate: Maybe<Token_Aggregate_Fields>;
-  nodes: Array<Token>;
+
+/** columns and relationships of "tokens" */
+export type TokensClaimed_TokensArgs = {
+  distinct_on: InputMaybe<Array<Claimed_Tokens_Select_Column>>;
+  limit: InputMaybe<Scalars['Int']>;
+  offset: InputMaybe<Scalars['Int']>;
+  order_by: InputMaybe<Array<Claimed_Tokens_Order_By>>;
+  where: InputMaybe<Claimed_Tokens_Bool_Exp>;
 };
 
-/** aggregate fields of "token" */
-export type Token_Aggregate_Fields = {
-  __typename: 'token_aggregate_fields';
-  avg: Maybe<Token_Avg_Fields>;
+
+/** columns and relationships of "tokens" */
+export type TokensClaimed_Tokens_AggregateArgs = {
+  distinct_on: InputMaybe<Array<Claimed_Tokens_Select_Column>>;
+  limit: InputMaybe<Scalars['Int']>;
+  offset: InputMaybe<Scalars['Int']>;
+  order_by: InputMaybe<Array<Claimed_Tokens_Order_By>>;
+  where: InputMaybe<Claimed_Tokens_Bool_Exp>;
+};
+
+/** aggregated selection of "tokens" */
+export type Tokens_Aggregate = {
+  __typename: 'tokens_aggregate';
+  aggregate: Maybe<Tokens_Aggregate_Fields>;
+  nodes: Array<Tokens>;
+};
+
+/** aggregate fields of "tokens" */
+export type Tokens_Aggregate_Fields = {
+  __typename: 'tokens_aggregate_fields';
+  avg: Maybe<Tokens_Avg_Fields>;
   count: Scalars['Int'];
-  max: Maybe<Token_Max_Fields>;
-  min: Maybe<Token_Min_Fields>;
-  stddev: Maybe<Token_Stddev_Fields>;
-  stddev_pop: Maybe<Token_Stddev_Pop_Fields>;
-  stddev_samp: Maybe<Token_Stddev_Samp_Fields>;
-  sum: Maybe<Token_Sum_Fields>;
-  var_pop: Maybe<Token_Var_Pop_Fields>;
-  var_samp: Maybe<Token_Var_Samp_Fields>;
-  variance: Maybe<Token_Variance_Fields>;
+  max: Maybe<Tokens_Max_Fields>;
+  min: Maybe<Tokens_Min_Fields>;
+  stddev: Maybe<Tokens_Stddev_Fields>;
+  stddev_pop: Maybe<Tokens_Stddev_Pop_Fields>;
+  stddev_samp: Maybe<Tokens_Stddev_Samp_Fields>;
+  sum: Maybe<Tokens_Sum_Fields>;
+  var_pop: Maybe<Tokens_Var_Pop_Fields>;
+  var_samp: Maybe<Tokens_Var_Samp_Fields>;
+  variance: Maybe<Tokens_Variance_Fields>;
 };
 
 
-/** aggregate fields of "token" */
-export type Token_Aggregate_FieldsCountArgs = {
-  columns: InputMaybe<Array<Token_Select_Column>>;
+/** aggregate fields of "tokens" */
+export type Tokens_Aggregate_FieldsCountArgs = {
+  columns: InputMaybe<Array<Tokens_Select_Column>>;
   distinct: InputMaybe<Scalars['Boolean']>;
 };
 
 /** aggregate avg on columns */
-export type Token_Avg_Fields = {
-  __typename: 'token_avg_fields';
-  maturityStamp: Maybe<Scalars['Float']>;
+export type Tokens_Avg_Fields = {
+  __typename: 'tokens_avg_fields';
+  price: Maybe<Scalars['Float']>;
   supply: Maybe<Scalars['Float']>;
-  totalSupply: Maybe<Scalars['Float']>;
+  token_id: Maybe<Scalars['Float']>;
 };
 
-/** Boolean expression to filter rows from the table "token". All fields are combined with a logical 'AND'. */
-export type Token_Bool_Exp = {
-  _and: InputMaybe<Array<Token_Bool_Exp>>;
-  _not: InputMaybe<Token_Bool_Exp>;
-  _or: InputMaybe<Array<Token_Bool_Exp>>;
-  assetId: InputMaybe<String_Comparison_Exp>;
-  faceValue: InputMaybe<String_Comparison_Exp>;
-  id: InputMaybe<Uuid_Comparison_Exp>;
-  maturityStamp: InputMaybe<Numeric_Comparison_Exp>;
-  minted: InputMaybe<Boolean_Comparison_Exp>;
+/** Boolean expression to filter rows from the table "tokens". All fields are combined with a logical 'AND'. */
+export type Tokens_Bool_Exp = {
+  _and: InputMaybe<Array<Tokens_Bool_Exp>>;
+  _not: InputMaybe<Tokens_Bool_Exp>;
+  _or: InputMaybe<Array<Tokens_Bool_Exp>>;
+  claimed_tokens: InputMaybe<Claimed_Tokens_Bool_Exp>;
+  claimed_tokens_aggregate: InputMaybe<Claimed_Tokens_Aggregate_Bool_Exp>;
+  contract_address: InputMaybe<String_Comparison_Exp>;
+  description: InputMaybe<String_Comparison_Exp>;
+  json_cid: InputMaybe<String_Comparison_Exp>;
   name: InputMaybe<String_Comparison_Exp>;
-  supply: InputMaybe<Int_Comparison_Exp>;
-  totalSupply: InputMaybe<Int_Comparison_Exp>;
+  nft_type: InputMaybe<String_Comparison_Exp>;
+  price: InputMaybe<Numeric_Comparison_Exp>;
+  supply: InputMaybe<Numeric_Comparison_Exp>;
+  token_id: InputMaybe<Numeric_Comparison_Exp>;
 };
 
-/** unique or primary key constraints on table "token" */
-export enum Token_Constraint {
-  /** unique or primary key constraint on columns "assetId" */
-  TokenAssetIdKey = 'token_assetId_key',
-  /** unique or primary key constraint on columns "id" */
-  TokenPkey = 'token_pkey'
+/** unique or primary key constraints on table "tokens" */
+export enum Tokens_Constraint {
+  /** unique or primary key constraint on columns "token_id", "nft_type", "contract_address" */
+  TokensPkey = 'tokens_pkey'
 }
 
-/** input type for incrementing numeric columns in table "token" */
-export type Token_Inc_Input = {
-  maturityStamp: InputMaybe<Scalars['numeric']>;
-  supply: InputMaybe<Scalars['Int']>;
-  totalSupply: InputMaybe<Scalars['Int']>;
+/** input type for incrementing numeric columns in table "tokens" */
+export type Tokens_Inc_Input = {
+  price: InputMaybe<Scalars['numeric']>;
+  supply: InputMaybe<Scalars['numeric']>;
+  token_id: InputMaybe<Scalars['numeric']>;
 };
 
-/** input type for inserting data into table "token" */
-export type Token_Insert_Input = {
-  assetId: InputMaybe<Scalars['String']>;
-  faceValue: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['uuid']>;
-  maturityStamp: InputMaybe<Scalars['numeric']>;
-  minted: InputMaybe<Scalars['Boolean']>;
+/** input type for inserting data into table "tokens" */
+export type Tokens_Insert_Input = {
+  claimed_tokens: InputMaybe<Claimed_Tokens_Arr_Rel_Insert_Input>;
+  contract_address: InputMaybe<Scalars['String']>;
+  description: InputMaybe<Scalars['String']>;
+  json_cid: InputMaybe<Scalars['String']>;
   name: InputMaybe<Scalars['String']>;
-  supply: InputMaybe<Scalars['Int']>;
-  totalSupply: InputMaybe<Scalars['Int']>;
+  nft_type: InputMaybe<Scalars['String']>;
+  price: InputMaybe<Scalars['numeric']>;
+  supply: InputMaybe<Scalars['numeric']>;
+  token_id: InputMaybe<Scalars['numeric']>;
 };
 
 /** aggregate max on columns */
-export type Token_Max_Fields = {
-  __typename: 'token_max_fields';
-  assetId: Maybe<Scalars['String']>;
-  faceValue: Maybe<Scalars['String']>;
-  id: Maybe<Scalars['uuid']>;
-  maturityStamp: Maybe<Scalars['numeric']>;
+export type Tokens_Max_Fields = {
+  __typename: 'tokens_max_fields';
+  contract_address: Maybe<Scalars['String']>;
+  description: Maybe<Scalars['String']>;
+  json_cid: Maybe<Scalars['String']>;
   name: Maybe<Scalars['String']>;
-  supply: Maybe<Scalars['Int']>;
-  totalSupply: Maybe<Scalars['Int']>;
+  nft_type: Maybe<Scalars['String']>;
+  price: Maybe<Scalars['numeric']>;
+  supply: Maybe<Scalars['numeric']>;
+  token_id: Maybe<Scalars['numeric']>;
 };
 
 /** aggregate min on columns */
-export type Token_Min_Fields = {
-  __typename: 'token_min_fields';
-  assetId: Maybe<Scalars['String']>;
-  faceValue: Maybe<Scalars['String']>;
-  id: Maybe<Scalars['uuid']>;
-  maturityStamp: Maybe<Scalars['numeric']>;
+export type Tokens_Min_Fields = {
+  __typename: 'tokens_min_fields';
+  contract_address: Maybe<Scalars['String']>;
+  description: Maybe<Scalars['String']>;
+  json_cid: Maybe<Scalars['String']>;
   name: Maybe<Scalars['String']>;
-  supply: Maybe<Scalars['Int']>;
-  totalSupply: Maybe<Scalars['Int']>;
+  nft_type: Maybe<Scalars['String']>;
+  price: Maybe<Scalars['numeric']>;
+  supply: Maybe<Scalars['numeric']>;
+  token_id: Maybe<Scalars['numeric']>;
 };
 
-/** response of any mutation on the table "token" */
-export type Token_Mutation_Response = {
-  __typename: 'token_mutation_response';
+/** response of any mutation on the table "tokens" */
+export type Tokens_Mutation_Response = {
+  __typename: 'tokens_mutation_response';
   /** number of rows affected by the mutation */
   affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
-  returning: Array<Token>;
+  returning: Array<Tokens>;
 };
 
-/** on_conflict condition type for table "token" */
-export type Token_On_Conflict = {
-  constraint: Token_Constraint;
-  update_columns: Array<Token_Update_Column>;
-  where: InputMaybe<Token_Bool_Exp>;
+/** input type for inserting object relation for remote table "tokens" */
+export type Tokens_Obj_Rel_Insert_Input = {
+  data: Tokens_Insert_Input;
+  /** upsert condition */
+  on_conflict: InputMaybe<Tokens_On_Conflict>;
 };
 
-/** Ordering options when selecting data from "token". */
-export type Token_Order_By = {
-  assetId: InputMaybe<Order_By>;
-  faceValue: InputMaybe<Order_By>;
-  id: InputMaybe<Order_By>;
-  maturityStamp: InputMaybe<Order_By>;
-  minted: InputMaybe<Order_By>;
+/** on_conflict condition type for table "tokens" */
+export type Tokens_On_Conflict = {
+  constraint: Tokens_Constraint;
+  update_columns: Array<Tokens_Update_Column>;
+  where: InputMaybe<Tokens_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "tokens". */
+export type Tokens_Order_By = {
+  claimed_tokens_aggregate: InputMaybe<Claimed_Tokens_Aggregate_Order_By>;
+  contract_address: InputMaybe<Order_By>;
+  description: InputMaybe<Order_By>;
+  json_cid: InputMaybe<Order_By>;
   name: InputMaybe<Order_By>;
+  nft_type: InputMaybe<Order_By>;
+  price: InputMaybe<Order_By>;
   supply: InputMaybe<Order_By>;
-  totalSupply: InputMaybe<Order_By>;
+  token_id: InputMaybe<Order_By>;
 };
 
-/** primary key columns input for table: token */
-export type Token_Pk_Columns_Input = {
-  id: Scalars['uuid'];
+/** primary key columns input for table: tokens */
+export type Tokens_Pk_Columns_Input = {
+  contract_address: Scalars['String'];
+  nft_type: Scalars['String'];
+  token_id: Scalars['numeric'];
 };
 
-/** select columns of table "token" */
-export enum Token_Select_Column {
+/** select columns of table "tokens" */
+export enum Tokens_Select_Column {
   /** column name */
-  AssetId = 'assetId',
+  ContractAddress = 'contract_address',
   /** column name */
-  FaceValue = 'faceValue',
+  Description = 'description',
   /** column name */
-  Id = 'id',
-  /** column name */
-  MaturityStamp = 'maturityStamp',
-  /** column name */
-  Minted = 'minted',
+  JsonCid = 'json_cid',
   /** column name */
   Name = 'name',
   /** column name */
+  NftType = 'nft_type',
+  /** column name */
+  Price = 'price',
+  /** column name */
   Supply = 'supply',
   /** column name */
-  TotalSupply = 'totalSupply'
+  TokenId = 'token_id'
 }
 
-/** input type for updating data in table "token" */
-export type Token_Set_Input = {
-  assetId: InputMaybe<Scalars['String']>;
-  faceValue: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['uuid']>;
-  maturityStamp: InputMaybe<Scalars['numeric']>;
-  minted: InputMaybe<Scalars['Boolean']>;
+/** input type for updating data in table "tokens" */
+export type Tokens_Set_Input = {
+  contract_address: InputMaybe<Scalars['String']>;
+  description: InputMaybe<Scalars['String']>;
+  json_cid: InputMaybe<Scalars['String']>;
   name: InputMaybe<Scalars['String']>;
-  supply: InputMaybe<Scalars['Int']>;
-  totalSupply: InputMaybe<Scalars['Int']>;
+  nft_type: InputMaybe<Scalars['String']>;
+  price: InputMaybe<Scalars['numeric']>;
+  supply: InputMaybe<Scalars['numeric']>;
+  token_id: InputMaybe<Scalars['numeric']>;
 };
 
 /** aggregate stddev on columns */
-export type Token_Stddev_Fields = {
-  __typename: 'token_stddev_fields';
-  maturityStamp: Maybe<Scalars['Float']>;
+export type Tokens_Stddev_Fields = {
+  __typename: 'tokens_stddev_fields';
+  price: Maybe<Scalars['Float']>;
   supply: Maybe<Scalars['Float']>;
-  totalSupply: Maybe<Scalars['Float']>;
+  token_id: Maybe<Scalars['Float']>;
 };
 
 /** aggregate stddev_pop on columns */
-export type Token_Stddev_Pop_Fields = {
-  __typename: 'token_stddev_pop_fields';
-  maturityStamp: Maybe<Scalars['Float']>;
+export type Tokens_Stddev_Pop_Fields = {
+  __typename: 'tokens_stddev_pop_fields';
+  price: Maybe<Scalars['Float']>;
   supply: Maybe<Scalars['Float']>;
-  totalSupply: Maybe<Scalars['Float']>;
+  token_id: Maybe<Scalars['Float']>;
 };
 
 /** aggregate stddev_samp on columns */
-export type Token_Stddev_Samp_Fields = {
-  __typename: 'token_stddev_samp_fields';
-  maturityStamp: Maybe<Scalars['Float']>;
+export type Tokens_Stddev_Samp_Fields = {
+  __typename: 'tokens_stddev_samp_fields';
+  price: Maybe<Scalars['Float']>;
   supply: Maybe<Scalars['Float']>;
-  totalSupply: Maybe<Scalars['Float']>;
+  token_id: Maybe<Scalars['Float']>;
 };
 
-/** Streaming cursor of the table "token" */
-export type Token_Stream_Cursor_Input = {
+/** Streaming cursor of the table "tokens" */
+export type Tokens_Stream_Cursor_Input = {
   /** Stream column input with initial value */
-  initial_value: Token_Stream_Cursor_Value_Input;
+  initial_value: Tokens_Stream_Cursor_Value_Input;
   /** cursor ordering */
   ordering: InputMaybe<Cursor_Ordering>;
 };
 
 /** Initial value of the column from where the streaming should start */
-export type Token_Stream_Cursor_Value_Input = {
-  assetId: InputMaybe<Scalars['String']>;
-  faceValue: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['uuid']>;
-  maturityStamp: InputMaybe<Scalars['numeric']>;
-  minted: InputMaybe<Scalars['Boolean']>;
+export type Tokens_Stream_Cursor_Value_Input = {
+  contract_address: InputMaybe<Scalars['String']>;
+  description: InputMaybe<Scalars['String']>;
+  json_cid: InputMaybe<Scalars['String']>;
   name: InputMaybe<Scalars['String']>;
-  supply: InputMaybe<Scalars['Int']>;
-  totalSupply: InputMaybe<Scalars['Int']>;
+  nft_type: InputMaybe<Scalars['String']>;
+  price: InputMaybe<Scalars['numeric']>;
+  supply: InputMaybe<Scalars['numeric']>;
+  token_id: InputMaybe<Scalars['numeric']>;
 };
 
 /** aggregate sum on columns */
-export type Token_Sum_Fields = {
-  __typename: 'token_sum_fields';
-  maturityStamp: Maybe<Scalars['numeric']>;
-  supply: Maybe<Scalars['Int']>;
-  totalSupply: Maybe<Scalars['Int']>;
+export type Tokens_Sum_Fields = {
+  __typename: 'tokens_sum_fields';
+  price: Maybe<Scalars['numeric']>;
+  supply: Maybe<Scalars['numeric']>;
+  token_id: Maybe<Scalars['numeric']>;
 };
 
-/** update columns of table "token" */
-export enum Token_Update_Column {
+/** update columns of table "tokens" */
+export enum Tokens_Update_Column {
   /** column name */
-  AssetId = 'assetId',
+  ContractAddress = 'contract_address',
   /** column name */
-  FaceValue = 'faceValue',
+  Description = 'description',
   /** column name */
-  Id = 'id',
-  /** column name */
-  MaturityStamp = 'maturityStamp',
-  /** column name */
-  Minted = 'minted',
+  JsonCid = 'json_cid',
   /** column name */
   Name = 'name',
   /** column name */
+  NftType = 'nft_type',
+  /** column name */
+  Price = 'price',
+  /** column name */
   Supply = 'supply',
   /** column name */
-  TotalSupply = 'totalSupply'
+  TokenId = 'token_id'
 }
 
-export type Token_Updates = {
+export type Tokens_Updates = {
   /** increments the numeric columns with given value of the filtered values */
-  _inc: InputMaybe<Token_Inc_Input>;
+  _inc: InputMaybe<Tokens_Inc_Input>;
   /** sets the columns of the filtered rows to the given values */
-  _set: InputMaybe<Token_Set_Input>;
+  _set: InputMaybe<Tokens_Set_Input>;
   /** filter the rows which have to be updated */
-  where: Token_Bool_Exp;
+  where: Tokens_Bool_Exp;
 };
 
 /** aggregate var_pop on columns */
-export type Token_Var_Pop_Fields = {
-  __typename: 'token_var_pop_fields';
-  maturityStamp: Maybe<Scalars['Float']>;
+export type Tokens_Var_Pop_Fields = {
+  __typename: 'tokens_var_pop_fields';
+  price: Maybe<Scalars['Float']>;
   supply: Maybe<Scalars['Float']>;
-  totalSupply: Maybe<Scalars['Float']>;
+  token_id: Maybe<Scalars['Float']>;
 };
 
 /** aggregate var_samp on columns */
-export type Token_Var_Samp_Fields = {
-  __typename: 'token_var_samp_fields';
-  maturityStamp: Maybe<Scalars['Float']>;
+export type Tokens_Var_Samp_Fields = {
+  __typename: 'tokens_var_samp_fields';
+  price: Maybe<Scalars['Float']>;
   supply: Maybe<Scalars['Float']>;
-  totalSupply: Maybe<Scalars['Float']>;
+  token_id: Maybe<Scalars['Float']>;
 };
 
 /** aggregate variance on columns */
-export type Token_Variance_Fields = {
-  __typename: 'token_variance_fields';
-  maturityStamp: Maybe<Scalars['Float']>;
+export type Tokens_Variance_Fields = {
+  __typename: 'tokens_variance_fields';
+  price: Maybe<Scalars['Float']>;
   supply: Maybe<Scalars['Float']>;
-  totalSupply: Maybe<Scalars['Float']>;
+  token_id: Maybe<Scalars['Float']>;
 };
 
-/** To dynamically change the logo and company name */
-export type User_Setting = {
-  __typename: 'user_setting';
-  cid: Scalars['String'];
-  companyName: Scalars['String'];
-  id: Scalars['Int'];
+/** columns and relationships of "transactions" */
+export type Transactions = {
+  __typename: 'transactions';
+  amounts: Scalars['numeric'];
+  buyer_address: Scalars['String'];
+  /** An object relationship */
+  claimed_token: Maybe<Claimed_Tokens>;
+  contract_address: Scalars['String'];
+  created_at: Scalars['timestamptz'];
+  crypto_type: Maybe<Scalars['String']>;
+  nft_type: Scalars['String'];
+  payment_gateway_id: Scalars['String'];
+  payment_type: Scalars['String'];
+  sqs_message_id: Maybe<Scalars['String']>;
+  status: Scalars['String'];
+  token_id: Scalars['numeric'];
+  tx_hash: Maybe<Scalars['String']>;
+  updated_at: Maybe<Scalars['timestamptz']>;
+  uuid: Scalars['uuid'];
 };
 
-/** aggregated selection of "user_setting" */
-export type User_Setting_Aggregate = {
-  __typename: 'user_setting_aggregate';
-  aggregate: Maybe<User_Setting_Aggregate_Fields>;
-  nodes: Array<User_Setting>;
+/** aggregated selection of "transactions" */
+export type Transactions_Aggregate = {
+  __typename: 'transactions_aggregate';
+  aggregate: Maybe<Transactions_Aggregate_Fields>;
+  nodes: Array<Transactions>;
 };
 
-/** aggregate fields of "user_setting" */
-export type User_Setting_Aggregate_Fields = {
-  __typename: 'user_setting_aggregate_fields';
-  avg: Maybe<User_Setting_Avg_Fields>;
+export type Transactions_Aggregate_Bool_Exp = {
+  count: InputMaybe<Transactions_Aggregate_Bool_Exp_Count>;
+};
+
+export type Transactions_Aggregate_Bool_Exp_Count = {
+  arguments: InputMaybe<Array<Transactions_Select_Column>>;
+  distinct: InputMaybe<Scalars['Boolean']>;
+  filter: InputMaybe<Transactions_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
+/** aggregate fields of "transactions" */
+export type Transactions_Aggregate_Fields = {
+  __typename: 'transactions_aggregate_fields';
+  avg: Maybe<Transactions_Avg_Fields>;
   count: Scalars['Int'];
-  max: Maybe<User_Setting_Max_Fields>;
-  min: Maybe<User_Setting_Min_Fields>;
-  stddev: Maybe<User_Setting_Stddev_Fields>;
-  stddev_pop: Maybe<User_Setting_Stddev_Pop_Fields>;
-  stddev_samp: Maybe<User_Setting_Stddev_Samp_Fields>;
-  sum: Maybe<User_Setting_Sum_Fields>;
-  var_pop: Maybe<User_Setting_Var_Pop_Fields>;
-  var_samp: Maybe<User_Setting_Var_Samp_Fields>;
-  variance: Maybe<User_Setting_Variance_Fields>;
+  max: Maybe<Transactions_Max_Fields>;
+  min: Maybe<Transactions_Min_Fields>;
+  stddev: Maybe<Transactions_Stddev_Fields>;
+  stddev_pop: Maybe<Transactions_Stddev_Pop_Fields>;
+  stddev_samp: Maybe<Transactions_Stddev_Samp_Fields>;
+  sum: Maybe<Transactions_Sum_Fields>;
+  var_pop: Maybe<Transactions_Var_Pop_Fields>;
+  var_samp: Maybe<Transactions_Var_Samp_Fields>;
+  variance: Maybe<Transactions_Variance_Fields>;
 };
 
 
-/** aggregate fields of "user_setting" */
-export type User_Setting_Aggregate_FieldsCountArgs = {
-  columns: InputMaybe<Array<User_Setting_Select_Column>>;
+/** aggregate fields of "transactions" */
+export type Transactions_Aggregate_FieldsCountArgs = {
+  columns: InputMaybe<Array<Transactions_Select_Column>>;
   distinct: InputMaybe<Scalars['Boolean']>;
 };
 
+/** order by aggregate values of table "transactions" */
+export type Transactions_Aggregate_Order_By = {
+  avg: InputMaybe<Transactions_Avg_Order_By>;
+  count: InputMaybe<Order_By>;
+  max: InputMaybe<Transactions_Max_Order_By>;
+  min: InputMaybe<Transactions_Min_Order_By>;
+  stddev: InputMaybe<Transactions_Stddev_Order_By>;
+  stddev_pop: InputMaybe<Transactions_Stddev_Pop_Order_By>;
+  stddev_samp: InputMaybe<Transactions_Stddev_Samp_Order_By>;
+  sum: InputMaybe<Transactions_Sum_Order_By>;
+  var_pop: InputMaybe<Transactions_Var_Pop_Order_By>;
+  var_samp: InputMaybe<Transactions_Var_Samp_Order_By>;
+  variance: InputMaybe<Transactions_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "transactions" */
+export type Transactions_Arr_Rel_Insert_Input = {
+  data: Array<Transactions_Insert_Input>;
+  /** upsert condition */
+  on_conflict: InputMaybe<Transactions_On_Conflict>;
+};
+
 /** aggregate avg on columns */
-export type User_Setting_Avg_Fields = {
-  __typename: 'user_setting_avg_fields';
-  id: Maybe<Scalars['Float']>;
+export type Transactions_Avg_Fields = {
+  __typename: 'transactions_avg_fields';
+  amounts: Maybe<Scalars['Float']>;
+  token_id: Maybe<Scalars['Float']>;
 };
 
-/** Boolean expression to filter rows from the table "user_setting". All fields are combined with a logical 'AND'. */
-export type User_Setting_Bool_Exp = {
-  _and: InputMaybe<Array<User_Setting_Bool_Exp>>;
-  _not: InputMaybe<User_Setting_Bool_Exp>;
-  _or: InputMaybe<Array<User_Setting_Bool_Exp>>;
-  cid: InputMaybe<String_Comparison_Exp>;
-  companyName: InputMaybe<String_Comparison_Exp>;
-  id: InputMaybe<Int_Comparison_Exp>;
+/** order by avg() on columns of table "transactions" */
+export type Transactions_Avg_Order_By = {
+  amounts: InputMaybe<Order_By>;
+  token_id: InputMaybe<Order_By>;
 };
 
-/** unique or primary key constraints on table "user_setting" */
-export enum User_Setting_Constraint {
-  /** unique or primary key constraint on columns "cid" */
-  UserSettingCidKey = 'user_setting_cid_key',
-  /** unique or primary key constraint on columns "id" */
-  UserSettingPkey = 'user_setting_pkey'
+/** Boolean expression to filter rows from the table "transactions". All fields are combined with a logical 'AND'. */
+export type Transactions_Bool_Exp = {
+  _and: InputMaybe<Array<Transactions_Bool_Exp>>;
+  _not: InputMaybe<Transactions_Bool_Exp>;
+  _or: InputMaybe<Array<Transactions_Bool_Exp>>;
+  amounts: InputMaybe<Numeric_Comparison_Exp>;
+  buyer_address: InputMaybe<String_Comparison_Exp>;
+  claimed_token: InputMaybe<Claimed_Tokens_Bool_Exp>;
+  contract_address: InputMaybe<String_Comparison_Exp>;
+  created_at: InputMaybe<Timestamptz_Comparison_Exp>;
+  crypto_type: InputMaybe<String_Comparison_Exp>;
+  nft_type: InputMaybe<String_Comparison_Exp>;
+  payment_gateway_id: InputMaybe<String_Comparison_Exp>;
+  payment_type: InputMaybe<String_Comparison_Exp>;
+  sqs_message_id: InputMaybe<String_Comparison_Exp>;
+  status: InputMaybe<String_Comparison_Exp>;
+  token_id: InputMaybe<Numeric_Comparison_Exp>;
+  tx_hash: InputMaybe<String_Comparison_Exp>;
+  updated_at: InputMaybe<Timestamptz_Comparison_Exp>;
+  uuid: InputMaybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "transactions" */
+export enum Transactions_Constraint {
+  /** unique or primary key constraint on columns "uuid" */
+  TransactionsPkey = 'transactions_pkey'
 }
 
-/** input type for incrementing numeric columns in table "user_setting" */
-export type User_Setting_Inc_Input = {
-  id: InputMaybe<Scalars['Int']>;
+/** input type for incrementing numeric columns in table "transactions" */
+export type Transactions_Inc_Input = {
+  amounts: InputMaybe<Scalars['numeric']>;
+  token_id: InputMaybe<Scalars['numeric']>;
 };
 
-/** input type for inserting data into table "user_setting" */
-export type User_Setting_Insert_Input = {
-  cid: InputMaybe<Scalars['String']>;
-  companyName: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['Int']>;
+/** input type for inserting data into table "transactions" */
+export type Transactions_Insert_Input = {
+  amounts: InputMaybe<Scalars['numeric']>;
+  buyer_address: InputMaybe<Scalars['String']>;
+  claimed_token: InputMaybe<Claimed_Tokens_Obj_Rel_Insert_Input>;
+  contract_address: InputMaybe<Scalars['String']>;
+  created_at: InputMaybe<Scalars['timestamptz']>;
+  crypto_type: InputMaybe<Scalars['String']>;
+  nft_type: InputMaybe<Scalars['String']>;
+  payment_gateway_id: InputMaybe<Scalars['String']>;
+  payment_type: InputMaybe<Scalars['String']>;
+  sqs_message_id: InputMaybe<Scalars['String']>;
+  status: InputMaybe<Scalars['String']>;
+  token_id: InputMaybe<Scalars['numeric']>;
+  tx_hash: InputMaybe<Scalars['String']>;
+  updated_at: InputMaybe<Scalars['timestamptz']>;
+  uuid: InputMaybe<Scalars['uuid']>;
 };
 
 /** aggregate max on columns */
-export type User_Setting_Max_Fields = {
-  __typename: 'user_setting_max_fields';
-  cid: Maybe<Scalars['String']>;
-  companyName: Maybe<Scalars['String']>;
-  id: Maybe<Scalars['Int']>;
+export type Transactions_Max_Fields = {
+  __typename: 'transactions_max_fields';
+  amounts: Maybe<Scalars['numeric']>;
+  buyer_address: Maybe<Scalars['String']>;
+  contract_address: Maybe<Scalars['String']>;
+  created_at: Maybe<Scalars['timestamptz']>;
+  crypto_type: Maybe<Scalars['String']>;
+  nft_type: Maybe<Scalars['String']>;
+  payment_gateway_id: Maybe<Scalars['String']>;
+  payment_type: Maybe<Scalars['String']>;
+  sqs_message_id: Maybe<Scalars['String']>;
+  status: Maybe<Scalars['String']>;
+  token_id: Maybe<Scalars['numeric']>;
+  tx_hash: Maybe<Scalars['String']>;
+  updated_at: Maybe<Scalars['timestamptz']>;
+  uuid: Maybe<Scalars['uuid']>;
+};
+
+/** order by max() on columns of table "transactions" */
+export type Transactions_Max_Order_By = {
+  amounts: InputMaybe<Order_By>;
+  buyer_address: InputMaybe<Order_By>;
+  contract_address: InputMaybe<Order_By>;
+  created_at: InputMaybe<Order_By>;
+  crypto_type: InputMaybe<Order_By>;
+  nft_type: InputMaybe<Order_By>;
+  payment_gateway_id: InputMaybe<Order_By>;
+  payment_type: InputMaybe<Order_By>;
+  sqs_message_id: InputMaybe<Order_By>;
+  status: InputMaybe<Order_By>;
+  token_id: InputMaybe<Order_By>;
+  tx_hash: InputMaybe<Order_By>;
+  updated_at: InputMaybe<Order_By>;
+  uuid: InputMaybe<Order_By>;
 };
 
 /** aggregate min on columns */
-export type User_Setting_Min_Fields = {
-  __typename: 'user_setting_min_fields';
-  cid: Maybe<Scalars['String']>;
-  companyName: Maybe<Scalars['String']>;
-  id: Maybe<Scalars['Int']>;
+export type Transactions_Min_Fields = {
+  __typename: 'transactions_min_fields';
+  amounts: Maybe<Scalars['numeric']>;
+  buyer_address: Maybe<Scalars['String']>;
+  contract_address: Maybe<Scalars['String']>;
+  created_at: Maybe<Scalars['timestamptz']>;
+  crypto_type: Maybe<Scalars['String']>;
+  nft_type: Maybe<Scalars['String']>;
+  payment_gateway_id: Maybe<Scalars['String']>;
+  payment_type: Maybe<Scalars['String']>;
+  sqs_message_id: Maybe<Scalars['String']>;
+  status: Maybe<Scalars['String']>;
+  token_id: Maybe<Scalars['numeric']>;
+  tx_hash: Maybe<Scalars['String']>;
+  updated_at: Maybe<Scalars['timestamptz']>;
+  uuid: Maybe<Scalars['uuid']>;
 };
 
-/** response of any mutation on the table "user_setting" */
-export type User_Setting_Mutation_Response = {
-  __typename: 'user_setting_mutation_response';
+/** order by min() on columns of table "transactions" */
+export type Transactions_Min_Order_By = {
+  amounts: InputMaybe<Order_By>;
+  buyer_address: InputMaybe<Order_By>;
+  contract_address: InputMaybe<Order_By>;
+  created_at: InputMaybe<Order_By>;
+  crypto_type: InputMaybe<Order_By>;
+  nft_type: InputMaybe<Order_By>;
+  payment_gateway_id: InputMaybe<Order_By>;
+  payment_type: InputMaybe<Order_By>;
+  sqs_message_id: InputMaybe<Order_By>;
+  status: InputMaybe<Order_By>;
+  token_id: InputMaybe<Order_By>;
+  tx_hash: InputMaybe<Order_By>;
+  updated_at: InputMaybe<Order_By>;
+  uuid: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "transactions" */
+export type Transactions_Mutation_Response = {
+  __typename: 'transactions_mutation_response';
   /** number of rows affected by the mutation */
   affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
-  returning: Array<User_Setting>;
+  returning: Array<Transactions>;
 };
 
-/** on_conflict condition type for table "user_setting" */
-export type User_Setting_On_Conflict = {
-  constraint: User_Setting_Constraint;
-  update_columns: Array<User_Setting_Update_Column>;
-  where: InputMaybe<User_Setting_Bool_Exp>;
+/** on_conflict condition type for table "transactions" */
+export type Transactions_On_Conflict = {
+  constraint: Transactions_Constraint;
+  update_columns: Array<Transactions_Update_Column>;
+  where: InputMaybe<Transactions_Bool_Exp>;
 };
 
-/** Ordering options when selecting data from "user_setting". */
-export type User_Setting_Order_By = {
-  cid: InputMaybe<Order_By>;
-  companyName: InputMaybe<Order_By>;
-  id: InputMaybe<Order_By>;
+/** Ordering options when selecting data from "transactions". */
+export type Transactions_Order_By = {
+  amounts: InputMaybe<Order_By>;
+  buyer_address: InputMaybe<Order_By>;
+  claimed_token: InputMaybe<Claimed_Tokens_Order_By>;
+  contract_address: InputMaybe<Order_By>;
+  created_at: InputMaybe<Order_By>;
+  crypto_type: InputMaybe<Order_By>;
+  nft_type: InputMaybe<Order_By>;
+  payment_gateway_id: InputMaybe<Order_By>;
+  payment_type: InputMaybe<Order_By>;
+  sqs_message_id: InputMaybe<Order_By>;
+  status: InputMaybe<Order_By>;
+  token_id: InputMaybe<Order_By>;
+  tx_hash: InputMaybe<Order_By>;
+  updated_at: InputMaybe<Order_By>;
+  uuid: InputMaybe<Order_By>;
 };
 
-/** primary key columns input for table: user_setting */
-export type User_Setting_Pk_Columns_Input = {
-  id: Scalars['Int'];
+/** primary key columns input for table: transactions */
+export type Transactions_Pk_Columns_Input = {
+  uuid: Scalars['uuid'];
 };
 
-/** select columns of table "user_setting" */
-export enum User_Setting_Select_Column {
+/** select columns of table "transactions" */
+export enum Transactions_Select_Column {
   /** column name */
-  Cid = 'cid',
+  Amounts = 'amounts',
   /** column name */
-  CompanyName = 'companyName',
+  BuyerAddress = 'buyer_address',
   /** column name */
-  Id = 'id'
+  ContractAddress = 'contract_address',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  CryptoType = 'crypto_type',
+  /** column name */
+  NftType = 'nft_type',
+  /** column name */
+  PaymentGatewayId = 'payment_gateway_id',
+  /** column name */
+  PaymentType = 'payment_type',
+  /** column name */
+  SqsMessageId = 'sqs_message_id',
+  /** column name */
+  Status = 'status',
+  /** column name */
+  TokenId = 'token_id',
+  /** column name */
+  TxHash = 'tx_hash',
+  /** column name */
+  UpdatedAt = 'updated_at',
+  /** column name */
+  Uuid = 'uuid'
 }
 
-/** input type for updating data in table "user_setting" */
-export type User_Setting_Set_Input = {
-  cid: InputMaybe<Scalars['String']>;
-  companyName: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['Int']>;
+/** input type for updating data in table "transactions" */
+export type Transactions_Set_Input = {
+  amounts: InputMaybe<Scalars['numeric']>;
+  buyer_address: InputMaybe<Scalars['String']>;
+  contract_address: InputMaybe<Scalars['String']>;
+  created_at: InputMaybe<Scalars['timestamptz']>;
+  crypto_type: InputMaybe<Scalars['String']>;
+  nft_type: InputMaybe<Scalars['String']>;
+  payment_gateway_id: InputMaybe<Scalars['String']>;
+  payment_type: InputMaybe<Scalars['String']>;
+  sqs_message_id: InputMaybe<Scalars['String']>;
+  status: InputMaybe<Scalars['String']>;
+  token_id: InputMaybe<Scalars['numeric']>;
+  tx_hash: InputMaybe<Scalars['String']>;
+  updated_at: InputMaybe<Scalars['timestamptz']>;
+  uuid: InputMaybe<Scalars['uuid']>;
 };
 
 /** aggregate stddev on columns */
-export type User_Setting_Stddev_Fields = {
-  __typename: 'user_setting_stddev_fields';
-  id: Maybe<Scalars['Float']>;
+export type Transactions_Stddev_Fields = {
+  __typename: 'transactions_stddev_fields';
+  amounts: Maybe<Scalars['Float']>;
+  token_id: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "transactions" */
+export type Transactions_Stddev_Order_By = {
+  amounts: InputMaybe<Order_By>;
+  token_id: InputMaybe<Order_By>;
 };
 
 /** aggregate stddev_pop on columns */
-export type User_Setting_Stddev_Pop_Fields = {
-  __typename: 'user_setting_stddev_pop_fields';
-  id: Maybe<Scalars['Float']>;
+export type Transactions_Stddev_Pop_Fields = {
+  __typename: 'transactions_stddev_pop_fields';
+  amounts: Maybe<Scalars['Float']>;
+  token_id: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "transactions" */
+export type Transactions_Stddev_Pop_Order_By = {
+  amounts: InputMaybe<Order_By>;
+  token_id: InputMaybe<Order_By>;
 };
 
 /** aggregate stddev_samp on columns */
-export type User_Setting_Stddev_Samp_Fields = {
-  __typename: 'user_setting_stddev_samp_fields';
-  id: Maybe<Scalars['Float']>;
+export type Transactions_Stddev_Samp_Fields = {
+  __typename: 'transactions_stddev_samp_fields';
+  amounts: Maybe<Scalars['Float']>;
+  token_id: Maybe<Scalars['Float']>;
 };
 
-/** Streaming cursor of the table "user_setting" */
-export type User_Setting_Stream_Cursor_Input = {
+/** order by stddev_samp() on columns of table "transactions" */
+export type Transactions_Stddev_Samp_Order_By = {
+  amounts: InputMaybe<Order_By>;
+  token_id: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "transactions" */
+export type Transactions_Stream_Cursor_Input = {
   /** Stream column input with initial value */
-  initial_value: User_Setting_Stream_Cursor_Value_Input;
+  initial_value: Transactions_Stream_Cursor_Value_Input;
   /** cursor ordering */
   ordering: InputMaybe<Cursor_Ordering>;
 };
 
 /** Initial value of the column from where the streaming should start */
-export type User_Setting_Stream_Cursor_Value_Input = {
-  cid: InputMaybe<Scalars['String']>;
-  companyName: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['Int']>;
+export type Transactions_Stream_Cursor_Value_Input = {
+  amounts: InputMaybe<Scalars['numeric']>;
+  buyer_address: InputMaybe<Scalars['String']>;
+  contract_address: InputMaybe<Scalars['String']>;
+  created_at: InputMaybe<Scalars['timestamptz']>;
+  crypto_type: InputMaybe<Scalars['String']>;
+  nft_type: InputMaybe<Scalars['String']>;
+  payment_gateway_id: InputMaybe<Scalars['String']>;
+  payment_type: InputMaybe<Scalars['String']>;
+  sqs_message_id: InputMaybe<Scalars['String']>;
+  status: InputMaybe<Scalars['String']>;
+  token_id: InputMaybe<Scalars['numeric']>;
+  tx_hash: InputMaybe<Scalars['String']>;
+  updated_at: InputMaybe<Scalars['timestamptz']>;
+  uuid: InputMaybe<Scalars['uuid']>;
 };
 
 /** aggregate sum on columns */
-export type User_Setting_Sum_Fields = {
-  __typename: 'user_setting_sum_fields';
-  id: Maybe<Scalars['Int']>;
+export type Transactions_Sum_Fields = {
+  __typename: 'transactions_sum_fields';
+  amounts: Maybe<Scalars['numeric']>;
+  token_id: Maybe<Scalars['numeric']>;
 };
 
-/** update columns of table "user_setting" */
-export enum User_Setting_Update_Column {
+/** order by sum() on columns of table "transactions" */
+export type Transactions_Sum_Order_By = {
+  amounts: InputMaybe<Order_By>;
+  token_id: InputMaybe<Order_By>;
+};
+
+/** update columns of table "transactions" */
+export enum Transactions_Update_Column {
   /** column name */
-  Cid = 'cid',
+  Amounts = 'amounts',
   /** column name */
-  CompanyName = 'companyName',
+  BuyerAddress = 'buyer_address',
   /** column name */
-  Id = 'id'
+  ContractAddress = 'contract_address',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  CryptoType = 'crypto_type',
+  /** column name */
+  NftType = 'nft_type',
+  /** column name */
+  PaymentGatewayId = 'payment_gateway_id',
+  /** column name */
+  PaymentType = 'payment_type',
+  /** column name */
+  SqsMessageId = 'sqs_message_id',
+  /** column name */
+  Status = 'status',
+  /** column name */
+  TokenId = 'token_id',
+  /** column name */
+  TxHash = 'tx_hash',
+  /** column name */
+  UpdatedAt = 'updated_at',
+  /** column name */
+  Uuid = 'uuid'
 }
 
-export type User_Setting_Updates = {
+export type Transactions_Updates = {
   /** increments the numeric columns with given value of the filtered values */
-  _inc: InputMaybe<User_Setting_Inc_Input>;
+  _inc: InputMaybe<Transactions_Inc_Input>;
   /** sets the columns of the filtered rows to the given values */
-  _set: InputMaybe<User_Setting_Set_Input>;
+  _set: InputMaybe<Transactions_Set_Input>;
   /** filter the rows which have to be updated */
-  where: User_Setting_Bool_Exp;
+  where: Transactions_Bool_Exp;
 };
 
 /** aggregate var_pop on columns */
-export type User_Setting_Var_Pop_Fields = {
-  __typename: 'user_setting_var_pop_fields';
-  id: Maybe<Scalars['Float']>;
+export type Transactions_Var_Pop_Fields = {
+  __typename: 'transactions_var_pop_fields';
+  amounts: Maybe<Scalars['Float']>;
+  token_id: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "transactions" */
+export type Transactions_Var_Pop_Order_By = {
+  amounts: InputMaybe<Order_By>;
+  token_id: InputMaybe<Order_By>;
 };
 
 /** aggregate var_samp on columns */
-export type User_Setting_Var_Samp_Fields = {
-  __typename: 'user_setting_var_samp_fields';
-  id: Maybe<Scalars['Float']>;
+export type Transactions_Var_Samp_Fields = {
+  __typename: 'transactions_var_samp_fields';
+  amounts: Maybe<Scalars['Float']>;
+  token_id: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "transactions" */
+export type Transactions_Var_Samp_Order_By = {
+  amounts: InputMaybe<Order_By>;
+  token_id: InputMaybe<Order_By>;
 };
 
 /** aggregate variance on columns */
-export type User_Setting_Variance_Fields = {
-  __typename: 'user_setting_variance_fields';
-  id: Maybe<Scalars['Float']>;
+export type Transactions_Variance_Fields = {
+  __typename: 'transactions_variance_fields';
+  amounts: Maybe<Scalars['Float']>;
+  token_id: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "transactions" */
+export type Transactions_Variance_Order_By = {
+  amounts: InputMaybe<Order_By>;
+  token_id: InputMaybe<Order_By>;
 };
 
 /** columns and relationships of "users" */
 export type Users = {
   __typename: 'users';
-  address: Scalars['String'];
-  casa: Maybe<Scalars['String']>;
-  cif: Maybe<Scalars['String']>;
+  city: Scalars['String'];
+  country: Scalars['String'];
+  dob: Scalars['date'];
   email: Scalars['String'];
-  id: Scalars['uuid'];
-  password: Scalars['String'];
-  pvtkey: Scalars['String'];
-  role: Maybe<Scalars['String']>;
-  segment: Maybe<Scalars['String']>;
-  username: Scalars['String'];
+  first_name: Scalars['String'];
+  last_name: Scalars['String'];
+  mobile: Scalars['String'];
+  user_address: Scalars['String'];
 };
 
 /** aggregated selection of "users" */
@@ -1916,72 +1883,58 @@ export type Users_Bool_Exp = {
   _and: InputMaybe<Array<Users_Bool_Exp>>;
   _not: InputMaybe<Users_Bool_Exp>;
   _or: InputMaybe<Array<Users_Bool_Exp>>;
-  address: InputMaybe<String_Comparison_Exp>;
-  casa: InputMaybe<String_Comparison_Exp>;
-  cif: InputMaybe<String_Comparison_Exp>;
+  city: InputMaybe<String_Comparison_Exp>;
+  country: InputMaybe<String_Comparison_Exp>;
+  dob: InputMaybe<Date_Comparison_Exp>;
   email: InputMaybe<String_Comparison_Exp>;
-  id: InputMaybe<Uuid_Comparison_Exp>;
-  password: InputMaybe<String_Comparison_Exp>;
-  pvtkey: InputMaybe<String_Comparison_Exp>;
-  role: InputMaybe<String_Comparison_Exp>;
-  segment: InputMaybe<String_Comparison_Exp>;
-  username: InputMaybe<String_Comparison_Exp>;
+  first_name: InputMaybe<String_Comparison_Exp>;
+  last_name: InputMaybe<String_Comparison_Exp>;
+  mobile: InputMaybe<String_Comparison_Exp>;
+  user_address: InputMaybe<String_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "users" */
 export enum Users_Constraint {
-  /** unique or primary key constraint on columns "address" */
-  UsersAddressKey = 'users_address_key',
-  /** unique or primary key constraint on columns "id" */
-  UsersPkey = 'users_pkey',
-  /** unique or primary key constraint on columns "pvtkey" */
-  UsersPvtkeyKey = 'users_pvtkey_key',
-  /** unique or primary key constraint on columns "username" */
-  UsersUsernameKey = 'users_username_key'
+  /** unique or primary key constraint on columns "user_address" */
+  UsersPkey = 'users_pkey'
 }
 
 /** input type for inserting data into table "users" */
 export type Users_Insert_Input = {
-  address: InputMaybe<Scalars['String']>;
-  casa: InputMaybe<Scalars['String']>;
-  cif: InputMaybe<Scalars['String']>;
+  city: InputMaybe<Scalars['String']>;
+  country: InputMaybe<Scalars['String']>;
+  dob: InputMaybe<Scalars['date']>;
   email: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['uuid']>;
-  password: InputMaybe<Scalars['String']>;
-  pvtkey: InputMaybe<Scalars['String']>;
-  role: InputMaybe<Scalars['String']>;
-  segment: InputMaybe<Scalars['String']>;
-  username: InputMaybe<Scalars['String']>;
+  first_name: InputMaybe<Scalars['String']>;
+  last_name: InputMaybe<Scalars['String']>;
+  mobile: InputMaybe<Scalars['String']>;
+  user_address: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
 export type Users_Max_Fields = {
   __typename: 'users_max_fields';
-  address: Maybe<Scalars['String']>;
-  casa: Maybe<Scalars['String']>;
-  cif: Maybe<Scalars['String']>;
+  city: Maybe<Scalars['String']>;
+  country: Maybe<Scalars['String']>;
+  dob: Maybe<Scalars['date']>;
   email: Maybe<Scalars['String']>;
-  id: Maybe<Scalars['uuid']>;
-  password: Maybe<Scalars['String']>;
-  pvtkey: Maybe<Scalars['String']>;
-  role: Maybe<Scalars['String']>;
-  segment: Maybe<Scalars['String']>;
-  username: Maybe<Scalars['String']>;
+  first_name: Maybe<Scalars['String']>;
+  last_name: Maybe<Scalars['String']>;
+  mobile: Maybe<Scalars['String']>;
+  user_address: Maybe<Scalars['String']>;
 };
 
 /** aggregate min on columns */
 export type Users_Min_Fields = {
   __typename: 'users_min_fields';
-  address: Maybe<Scalars['String']>;
-  casa: Maybe<Scalars['String']>;
-  cif: Maybe<Scalars['String']>;
+  city: Maybe<Scalars['String']>;
+  country: Maybe<Scalars['String']>;
+  dob: Maybe<Scalars['date']>;
   email: Maybe<Scalars['String']>;
-  id: Maybe<Scalars['uuid']>;
-  password: Maybe<Scalars['String']>;
-  pvtkey: Maybe<Scalars['String']>;
-  role: Maybe<Scalars['String']>;
-  segment: Maybe<Scalars['String']>;
-  username: Maybe<Scalars['String']>;
+  first_name: Maybe<Scalars['String']>;
+  last_name: Maybe<Scalars['String']>;
+  mobile: Maybe<Scalars['String']>;
+  user_address: Maybe<Scalars['String']>;
 };
 
 /** response of any mutation on the table "users" */
@@ -2002,59 +1955,51 @@ export type Users_On_Conflict = {
 
 /** Ordering options when selecting data from "users". */
 export type Users_Order_By = {
-  address: InputMaybe<Order_By>;
-  casa: InputMaybe<Order_By>;
-  cif: InputMaybe<Order_By>;
+  city: InputMaybe<Order_By>;
+  country: InputMaybe<Order_By>;
+  dob: InputMaybe<Order_By>;
   email: InputMaybe<Order_By>;
-  id: InputMaybe<Order_By>;
-  password: InputMaybe<Order_By>;
-  pvtkey: InputMaybe<Order_By>;
-  role: InputMaybe<Order_By>;
-  segment: InputMaybe<Order_By>;
-  username: InputMaybe<Order_By>;
+  first_name: InputMaybe<Order_By>;
+  last_name: InputMaybe<Order_By>;
+  mobile: InputMaybe<Order_By>;
+  user_address: InputMaybe<Order_By>;
 };
 
 /** primary key columns input for table: users */
 export type Users_Pk_Columns_Input = {
-  id: Scalars['uuid'];
+  user_address: Scalars['String'];
 };
 
 /** select columns of table "users" */
 export enum Users_Select_Column {
   /** column name */
-  Address = 'address',
+  City = 'city',
   /** column name */
-  Casa = 'casa',
+  Country = 'country',
   /** column name */
-  Cif = 'cif',
+  Dob = 'dob',
   /** column name */
   Email = 'email',
   /** column name */
-  Id = 'id',
+  FirstName = 'first_name',
   /** column name */
-  Password = 'password',
+  LastName = 'last_name',
   /** column name */
-  Pvtkey = 'pvtkey',
+  Mobile = 'mobile',
   /** column name */
-  Role = 'role',
-  /** column name */
-  Segment = 'segment',
-  /** column name */
-  Username = 'username'
+  UserAddress = 'user_address'
 }
 
 /** input type for updating data in table "users" */
 export type Users_Set_Input = {
-  address: InputMaybe<Scalars['String']>;
-  casa: InputMaybe<Scalars['String']>;
-  cif: InputMaybe<Scalars['String']>;
+  city: InputMaybe<Scalars['String']>;
+  country: InputMaybe<Scalars['String']>;
+  dob: InputMaybe<Scalars['date']>;
   email: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['uuid']>;
-  password: InputMaybe<Scalars['String']>;
-  pvtkey: InputMaybe<Scalars['String']>;
-  role: InputMaybe<Scalars['String']>;
-  segment: InputMaybe<Scalars['String']>;
-  username: InputMaybe<Scalars['String']>;
+  first_name: InputMaybe<Scalars['String']>;
+  last_name: InputMaybe<Scalars['String']>;
+  mobile: InputMaybe<Scalars['String']>;
+  user_address: InputMaybe<Scalars['String']>;
 };
 
 /** Streaming cursor of the table "users" */
@@ -2067,40 +2012,34 @@ export type Users_Stream_Cursor_Input = {
 
 /** Initial value of the column from where the streaming should start */
 export type Users_Stream_Cursor_Value_Input = {
-  address: InputMaybe<Scalars['String']>;
-  casa: InputMaybe<Scalars['String']>;
-  cif: InputMaybe<Scalars['String']>;
+  city: InputMaybe<Scalars['String']>;
+  country: InputMaybe<Scalars['String']>;
+  dob: InputMaybe<Scalars['date']>;
   email: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['uuid']>;
-  password: InputMaybe<Scalars['String']>;
-  pvtkey: InputMaybe<Scalars['String']>;
-  role: InputMaybe<Scalars['String']>;
-  segment: InputMaybe<Scalars['String']>;
-  username: InputMaybe<Scalars['String']>;
+  first_name: InputMaybe<Scalars['String']>;
+  last_name: InputMaybe<Scalars['String']>;
+  mobile: InputMaybe<Scalars['String']>;
+  user_address: InputMaybe<Scalars['String']>;
 };
 
 /** update columns of table "users" */
 export enum Users_Update_Column {
   /** column name */
-  Address = 'address',
+  City = 'city',
   /** column name */
-  Casa = 'casa',
+  Country = 'country',
   /** column name */
-  Cif = 'cif',
+  Dob = 'dob',
   /** column name */
   Email = 'email',
   /** column name */
-  Id = 'id',
+  FirstName = 'first_name',
   /** column name */
-  Password = 'password',
+  LastName = 'last_name',
   /** column name */
-  Pvtkey = 'pvtkey',
+  Mobile = 'mobile',
   /** column name */
-  Role = 'role',
-  /** column name */
-  Segment = 'segment',
-  /** column name */
-  Username = 'username'
+  UserAddress = 'user_address'
 }
 
 export type Users_Updates = {

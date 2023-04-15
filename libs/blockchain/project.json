@@ -1,0 +1,23 @@
+{
+  "root": "libs/blockchain",
+  "sourceRoot": "libs/blockchain/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/blockchain/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/blockchain"],
+      "options": {
+        "jestConfig": "libs/blockchain/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

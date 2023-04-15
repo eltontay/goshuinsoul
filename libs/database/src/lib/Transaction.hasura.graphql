@@ -1,0 +1,14 @@
+mutation insertTransactionLog($insertParams: transactions_insert_input!) {
+  insert_transactions_one(object: $insertParams) {
+    uuid
+  }
+}
+
+mutation updateSqsMessageId($paymentGatewayId: String, $sqsMessageId: String) {
+  update_transactions(
+    where: { payment_gateway_id: { _eq: $paymentGatewayId } }
+    _set: { sqs_message_id: $sqsMessageId }
+  ) {
+    affected_rows
+  }
+}

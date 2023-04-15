@@ -1,12 +1,12 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "npmScope": "eth-tokyo",
+  "npmScope": "eth-tokyo-frontend",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
         "cacheableOperations": ["build", "lint", "test", "e2e"],
-        "accessToken": "OTNmYWU5YjgtZDllYS00NzE5LWI4ZTYtMjBlNjkxOWI0MDFhfHJlYWQtd3JpdGU="
+        "accessToken": "MmQ0ODYxNzAtNTRmMi00OTEzLWJlMmItZWFlNDZjNmUyNTdjfHJlYWQtd3JpdGU="
       }
     }
   },
@@ -22,11 +22,7 @@
       "inputs": ["default", "^production"]
     },
     "lint": {
-      "inputs": [
-        "default",
-        "{workspaceRoot}/.eslintrc.json",
-        "{workspaceRoot}/.eslintignore"
-      ]
+      "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
     }
   },
   "namedInputs": {

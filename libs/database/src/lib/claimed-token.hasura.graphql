@@ -1,0 +1,21 @@
+mutation claimToken($objects: [claimed_tokens_insert_input!] = {token: {data: {}}, transactions: {data: {}}}) {
+  insert_claimed_tokens(objects: $objects, on_conflict: {constraint: claimed_tokens_pkey, update_columns: amounts}) {
+    affected_rows
+  }
+}
+
+query getClaimedTokenAmounts($nftType: String , $tokenId: numeric , $user_address: String ) {
+  claimed_tokens(where: {nft_type: {_eq: $nftType}, token_id: {_eq: $tokenId}, user_address: {_eq: $user_address}}) {
+    amounts
+  }
+}
+query getClaimedToken($user_address: String) {
+  claimed_tokens(where: {user_address: {_eq: $user_address}}) {
+    amounts
+    transactions {
+      tx_hash
+      status
+      created_at
+    }
+  }
+}
