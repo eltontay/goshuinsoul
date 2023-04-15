@@ -5,7 +5,7 @@ import getRawBody from 'raw-body';
 const authRequest = {
   id: '7f38a193-0918-4a48-9fac-36adfdb8b542',
   thid: '7f38a193-0918-4a48-9fac-36adfdb8b542',
-  from: 'did:polygonid:polygon:mumbai:2qL3R9yihUZUPyNxqa23pmEnV5g4MHmMxAa8TTKqiK',
+  from: 'did:polygonid:polygon:mumbai:2qQ1BQ7YSfXJVo1DTUduERDQfPFuzvsDaWyUCsVRVt',
   typ: 'application/iden3comm-plain-json',
   type: 'https://iden3-communication.io/authorization/1.0/request',
   body: {
