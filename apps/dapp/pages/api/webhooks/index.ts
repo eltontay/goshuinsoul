@@ -2,10 +2,7 @@ import { buffer } from 'micro';
 import Cors from 'micro-cors';
 import { NextApiRequest, NextApiResponse } from 'next';
 import Stripe from 'stripe';
-import {
-  insertTransaction,
-  updateSqsMessageId,
-} from '@goshuinsoul/database';
+import { insertTransaction, updateSqsMessageId } from '@goshuinsoul/database';
 import { enqueueTx } from '@goshuinsoul/database';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -13,7 +10,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 });
 console.log('console webhook secret', process.env.STRIPE_WEBHOOK_SECRET!);
 const webhookSecret: string =
-  'whsec_1bb35096c52db06e1889e996c9e9d1f736c99032d94364efdf963a3ad59dde67' ||
+  process.env.STRIPE_WEBHOOK_SECRET! ||
   'whsec_1bb35096c52db06e1889e996c9e9d1f736c99032d94364efdf963a3ad59dde67';
 
 // Stripe requires the raw body to construct the event.
