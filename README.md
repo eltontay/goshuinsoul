@@ -10,26 +10,30 @@ GoshuinSoul is a self-sovereign, shrine-gating and soul-bound nft issuer that is
 
 ## How it's made
 
-Sponsor technologies :
+Sponsor technologies : 
 
-Polygon - Polygon ID and Polygon Supernet
+1) Polygon - Polygon ID and Polygon Supernet
+
 Deployed Polygon Issuer Node on AWS cloud with Docker connecting to SettleMint's Mumbai Testnet RPC endpoint. This allows GoshuinSoul to explore customisable KYC process and the creation of ZK proofs.
 
-Deployed an EIP-5192 smart contract on the Polygon Supernet to create an app specific chain that is focused on the Japanese culture, preventing high activity and ensuring dedicated throughput with better performance.
+Deployed an EIP-5192 smart contract on the Polygon Supernet to create an app specific chain that is focused on the Japanese culture, preventing high activity and ensuring dedicated throughput with better performance. 
 
-The Graph
+2) The Graph 
+
 Creation of subgraphs from the Graph protocol to have real-time fast on-chain queries
 
-Others
+Others 
 
-Web3Auth to provide a seamless and familiar login feature for both web2 and web3 users
-Stripe integration to provide fiat payment options if users are not willing to pay with crypto
-Integrated DAI, USDC, USDT and WrappedETH crypto payment options for users willing to pay with crypto
+1) Web3Auth to provide a seamless and familiar login feature for both web2 and web3 users
+2) Stripe integration to provide fiat payment options if users are not willing to pay with crypto
+3) Integrated DAI, USDC, USDT and WrappedETH crypto payment options for users willing to pay with crypto
+
 Pipeline
 
-Geolocation QR code which ensures that users who are within close proximity to the location are able to scan the QR code
-DAOs for local communities around Shrines/Temples
-Utilities injected into Soul-bound token holders such as free Mochi!
+1) Geolocation QR code which ensures that users who are within close proximity to the location are able to scan the QR code
+2) DAOs for local communities around Shrines/Temples
+3) Utilities injected into Soul-bound token holders such as free Mochi!
+4) Customisable and unique Goushuin NFT 
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
