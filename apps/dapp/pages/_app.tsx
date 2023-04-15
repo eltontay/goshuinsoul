@@ -40,7 +40,7 @@ function CustomApp({
         <ContractProvider>
           <LocationProvider>
             <Head>
-              <title>GoshuinSoul</title>
+              <title>Goshuin SBT</title>
             </Head>
             <Toaster
               position="bottom-right"

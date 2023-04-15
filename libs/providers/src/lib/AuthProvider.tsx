@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { Web3Provider } from '@ethersproject/providers';
 import {
   ADAPTER_EVENTS,
@@ -176,7 +174,7 @@ export const Web3AuthProvider = ({ children }: IWeb3AuthProps) => {
             clientId,
             uxMode: 'popup',
             whiteLabel: {
-              name: 'GoshuinSoul',
+              name: 'Goshuinsoul',
             },
           },
         });
@@ -295,9 +293,9 @@ export const Web3AuthProvider = ({ children }: IWeb3AuthProps) => {
 
     if (userData?.users !== undefined && (userData?.users ?? []).length <= 0) {
       if (blockchainAddress) {
-        const parts = userInfo.current?.name?.split(' ');
-        const firstName = parts?.shift();
-        const lastName = parts?.join(' ');
+        let parts = userInfo.current?.name?.split(' ');
+        let firstName = parts?.shift();
+        let lastName = parts?.join(' ');
 
         console.log('User Info', userInfo.current);
         setItem('public_key', blockchainAddress || '');

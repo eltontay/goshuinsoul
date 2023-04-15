@@ -13,7 +13,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 });
 console.log('console webhook secret', process.env.STRIPE_WEBHOOK_SECRET!);
 const webhookSecret: string =
-  process.env.STRIPE_WEBHOOK_SECRET! ||
+  'whsec_1bb35096c52db06e1889e996c9e9d1f736c99032d94364efdf963a3ad59dde67' ||
   'whsec_1bb35096c52db06e1889e996c9e9d1f736c99032d94364efdf963a3ad59dde67';
 
 // Stripe requires the raw body to construct the event.
@@ -28,6 +28,7 @@ const cors = Cors({
 });
 
 const webhookHandler = async (req: NextApiRequest, res: NextApiResponse) => {
+  console.log('console inside');
   if (req.method === 'POST') {
     const buf = await buffer(req);
     const sig = req.headers['stripe-signature']!;

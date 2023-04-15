@@ -54,11 +54,11 @@ const Page: NextPageWithLayout = () => {
 
   const { setSession } = useAuth();
   const createUserHandler = async () => {
-    if (checkbox?.checkbox1 === false) {
-      console.log(checkbox);
-      alert('Please confirm that you are not a US citizen');
-      return;
-    }
+    // if (checkbox?.checkbox1 === false) {
+    //   console.log(checkbox);
+    //   alert('Please confirm that you are not a US citizen');
+    //   return;
+    // }
     if (checkbox?.checkbox2 === false) {
       console.log(checkbox);
       alert('Please confirm the terms and conditions');
@@ -72,7 +72,7 @@ const Page: NextPageWithLayout = () => {
         },
       });
       setSession(newUser.data.insert_users.returning[0]);
-      Router.push('/');
+      Router.push('/home');
     } catch (error) {
       console.error(error);
       if (error instanceof ValidationError) {
@@ -92,7 +92,7 @@ const Page: NextPageWithLayout = () => {
       <div className="wrap">
         <div className="container">
           <div className="backBtn mb-10">
-            <Link href="/" onClick={() => logout()}>
+            <Link href="/home" onClick={() => logout()}>
               Back
             </Link>
           </div>
@@ -225,9 +225,50 @@ const Page: NextPageWithLayout = () => {
                   )}
                 </div>
               </div>
+              <div className="col-md-6">
+                <div className="boxArea">
+                  <label htmlFor="" className="floating-label">
+                    Visa Issue Date
+                  </label>
+                  <input
+                    type="date"
+                    required
+                    value={userDetails.city}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      setUserDetails({ ...userDetails, city: e.target.value });
+                    }}
+                  />
+                  {errors?.city && (
+                    // if errors then display alert
+                    <Alert variant="danger">{<p>{errors.city}</p>}</Alert>
+                  )}
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="boxArea">
+                  <label htmlFor="" className="floating-label">
+                    Visa Expiry Date
+                  </label>
+                  <input
+                    type="date"
+                    required
+                    value={userDetails.country}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      setUserDetails({
+                        ...userDetails,
+                        country: e.target.value,
+                      });
+                    }}
+                  />
+                  {errors?.country && (
+                    // if errors then display alert
+                    <Alert variant="danger">{<p>{errors.country}</p>}</Alert>
+                  )}
+                </div>
+              </div>
               <div className="col-md-12">
                 <ul className="checkinfo">
-                  <li>
+                  {/* <li>
                     <input
                       type="checkbox"
                       id="citizen"
@@ -239,7 +280,7 @@ const Page: NextPageWithLayout = () => {
                       }}
                     />
                     <label htmlFor="citizen"> I am not a US citizen</label>
-                  </li>
+                  </li> */}
                   <li>
                     <input
                       type="checkbox"

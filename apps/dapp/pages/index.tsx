@@ -1,5 +1,5 @@
 import { useAuth } from '@goshuinsoul/providers';
-import Home from './home';
+import HomeBase from './HomeBase';
 import 'react-notifications/lib/notifications.css';
 import { Navbar } from '@goshuinsoul/components';
 
@@ -12,7 +12,7 @@ const Page: NextPageWithLayout = () => {
         <div>{/* <img src="loader-2.gif" className="loader" /> */}</div>
       )}
       <Navbar />
-      <Home />
+      <HomeBase />
     </>
   );
 };

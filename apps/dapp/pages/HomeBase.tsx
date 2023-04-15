@@ -15,7 +15,7 @@ const Page: NextPageWithLayout = () => {
       setCount(count - 1);
     }
   };
-  const amount = 35 * count;
+  const amount = 500 * count;
 
   return (
     <>
@@ -67,7 +67,7 @@ const Page: NextPageWithLayout = () => {
                       </button>
                     </li>
                   </ul>
-                  <div className="price-info">€{amount}</div>
+                  <div className="price-info">¥{amount}</div>
                 </div>
                 <div className="btn-action">
                   <button
@@ -81,7 +81,7 @@ const Page: NextPageWithLayout = () => {
                             pathname: '/Payment',
                             query: { amount: amount, count: count },
                           },
-                          '/'
+                          '/home'
                         );
                       }
                     }}

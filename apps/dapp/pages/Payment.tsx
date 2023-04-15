@@ -4,7 +4,11 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Router from 'next/router';
 import axios from 'axios';
-import { useAuth, useContract, useLocation } from '@goshuinsoul/providers';
+import {
+  useAuth,
+  useContract,
+  useLocation,
+} from '@goshuinsoul/providers';
 import {
   useClaimTokenMutation,
   useGetClaimedTokenAmountsQuery,
@@ -26,7 +30,7 @@ const Page: NextPageWithLayout = () => {
     process.env.NEXT_PUBLIC_NFT_TYPE
   );
 
-  console.log(location)
+  console.log(location);
 
   const contractAddress =
     process.env.NEXT_PUBLIC_NFT_TYPE === 'cleopatra'
@@ -45,7 +49,6 @@ const Page: NextPageWithLayout = () => {
   const option = ['MATIC', 'USDC', 'USDT', 'DAI', 'WETH'];
   const amount = Router.query.amount;
   const count = Router.query.count;
-
 
   useEffect(() => {
     const convert = async () => {
@@ -79,7 +82,7 @@ const Page: NextPageWithLayout = () => {
     if (payment === 'USDC') {
       console.log('console inside USDC');
       try {
-        const allowance =  await sdk?.USDC.allowance(
+        const allowance = await sdk?.USDC.allowance(
           user.user_address,
           contractAddress
         );
@@ -107,16 +110,16 @@ const Page: NextPageWithLayout = () => {
         }
 
         await sdk?.USDC.provider.waitForTransaction(
-          tx = await (
+          (tx = await (
             await sdk?.CrowdfundingNFT.mintWithToken(
               Number(count),
               process.env.NEXT_PUBLIC_USDC_ADDRESS
             )
-          )?.hash
+          )?.hash)
         );
         console.log('console tx mintwithtoken completed', tx?.hash);
       } catch (e) {
-        console.error(e)
+        console.error(e);
         throw new Error(e);
       }
     }
@@ -151,12 +154,12 @@ const Page: NextPageWithLayout = () => {
         }
 
         await sdk.USDT.provider.waitForTransaction(
-          tx = await (
+          (tx = await (
             await sdk?.CrowdfundingNFT.mintWithToken(
               Number(count),
               process.env.NEXT_PUBLIC_USDT_ADDRESS
             )
-          )?.hash
+          )?.hash)
         );
         console.log('console tx mintwithtoken completed', tx);
       } catch (e) {
@@ -166,7 +169,7 @@ const Page: NextPageWithLayout = () => {
 
     if (payment === 'DAI') {
       try {
-        const allowance =  await sdk?.DAI.allowance(
+        const allowance = await sdk?.DAI.allowance(
           user.user_address,
           contractAddress
         );
@@ -193,12 +196,12 @@ const Page: NextPageWithLayout = () => {
           });
         }
         await sdk.DAI.provider.waitForTransaction(
-          tx = await (
+          (tx = await (
             await sdk?.CrowdfundingNFT.mintWithToken(
               Number(count),
               process.env.NEXT_PUBLIC_DAI_ADDRESS
             )
-          )?.hash
+          )?.hash)
         );
         console.log('console tx mintwithtoken completed', tx);
       } catch (e) {
@@ -208,7 +211,7 @@ const Page: NextPageWithLayout = () => {
 
     if (payment === 'WETH') {
       try {
-        const allowance =  await sdk?.WrappedETH.allowance(
+        const allowance = await sdk?.WrappedETH.allowance(
           user.user_address,
           contractAddress
         );
@@ -236,12 +239,12 @@ const Page: NextPageWithLayout = () => {
         }
 
         await sdk.WrappedETH.provider.waitForTransaction(
-          tx = await (
+          (tx = await (
             await sdk?.CrowdfundingNFT.mintWithToken(
               Number(count),
               process.env.NEXT_PUBLIC_WETH_ADDRESS
             )
-          )?.hash
+          )?.hash)
         );
         console.log('console tx mintwithtoken completed');
       } catch (e) {
@@ -255,7 +258,7 @@ const Page: NextPageWithLayout = () => {
         const maticAmount = Number(exRate) * Number(count);
         // console.log('consoel matic',exRate.toFixed(2), typeof exRate,ethers, ethers?.utils.parseEther(exRate.toString()));
         console.log('console matic amoint', maticAmount);
-        console.log(1111,ethers?.utils.parseEther(maticAmount.toString()));
+        console.log(1111, ethers?.utils.parseEther(maticAmount.toString()));
         sdk.CrowdfundingNFT.provider.waitForTransaction(
           (tx = await (
             await sdk?.CrowdfundingNFT.mintWithToken(
@@ -308,116 +311,120 @@ const Page: NextPageWithLayout = () => {
       <div className="wrap">
         <div className="container">
           <div className="backBtn mb-10">
-            <Link href="/" passHref>
+            <Link href="/home" passHref>
               Back
             </Link>
           </div>
         </div>
         <div className="register-area">
-        {location?.country_name == 'United States'?
-        <div className="register-contain">
-        <h2>You are not allowed to purchase this NFT</h2>
-        </div>
-        :
-          <div className="register-contain">
-            <h1>Payment</h1>
+          {location?.country_name == 'United States' ? (
+            <div className="register-contain">
+              <h2>You are not allowed to purchase this NFT</h2>
+            </div>
+          ) : (
+            <div className="register-contain">
+              <h1>Payment</h1>
 
-            <div className="payment-info">
-              <div
-                className={
-                  payment === 'Stripe'
-                    ? 'payment-row bg-highlight'
-                    : 'payment-row'
-                }
-              >
-                <h2>Fiat</h2>
-                <ul className="payment-links">
-                  <li>
-                    <button
-                      className={`${payment == 'Stripe' ? 'btn-payment2' : 'btn-payment2'
-                        }`}
-                      onClick={() => setPayment('Stripe')}
-                    >
-                      <img src="visa.png" alt="" />
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      className={`${payment == 'Stripe' ? 'btn-payment2' : 'btn-payment2'
-                        }`}
-                      onClick={() => setPayment('Stripe')}
-                    >
-                      <img src="master-card.png" alt="" />
-                    </button>
-                  </li>
-                </ul>
-              </div>
-              {provider?.connection?.url === 'metamask' && (
+              <div className="payment-info">
                 <div
                   className={
-                    payment && payment !== 'Stripe'
+                    payment === 'Stripe'
                       ? 'payment-row bg-highlight'
                       : 'payment-row'
                   }
                 >
-                  <h2>Crypto</h2>
-                  <ul className="list-payment">
-                    {option.map((v, i) => (
-                      <li key={i}>
-                        <div className="payment-icons">
-                          <button
-                            className={`${payment == v ? 'btn-payment1' : 'btn-payment'
-                              }`}
-                            onClick={() => setPayment(String(v))}
-                          >
-                            {v}
-                          </button>
-                        </div>
-                      </li>
-                    ))}
+                  <h2>Fiat</h2>
+                  <ul className="payment-links">
+                    <li>
+                      <button
+                        className={`${
+                          payment == 'Stripe' ? 'btn-payment2' : 'btn-payment2'
+                        }`}
+                        onClick={() => setPayment('Stripe')}
+                      >
+                        <img src="visa.png" alt="" />
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        className={`${
+                          payment == 'Stripe' ? 'btn-payment2' : 'btn-payment2'
+                        }`}
+                        onClick={() => setPayment('Stripe')}
+                      >
+                        <img src="master-card.png" alt="" />
+                      </button>
+                    </li>
                   </ul>
                 </div>
-              )}
-            </div>
+                {provider?.connection?.url === 'metamask' && (
+                  <div
+                    className={
+                      payment && payment !== 'Stripe'
+                        ? 'payment-row bg-highlight'
+                        : 'payment-row'
+                    }
+                  >
+                    <h2>Crypto</h2>
+                    <ul className="list-payment">
+                      {option.map((v, i) => (
+                        <li key={i}>
+                          <div className="payment-icons">
+                            <button
+                              className={`${
+                                payment == v ? 'btn-payment1' : 'btn-payment'
+                              }`}
+                              onClick={() => setPayment(String(v))}
+                            >
+                              {v}
+                            </button>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
 
-            <div className="col-md-12">
-              <button
-                disabled={disable}
-                className="submitBtn"
-                onClick={() => {
-                  setDisable(true);
-                  if (payment == 'Stripe') {
-                    toast.promise(handleFiat(), {
-                      loading: 'Transaction in process...',
-                      success: (data) => {
-                        setDisable(false);
-                        return '';
-                      },
-                      error: (err) => {
-                        setDisable(false);
-                        return 'Cannot complete transaction';
-                      },
-                    });
-                  } else {
-                    toast.promise(handleCrypto(), {
-                      loading: 'Transaction in process...',
-                      success: (data) => {
-                        Router.push('/MyNft');
-                        return 'Transaction Completed';
-                      },
-                      error: (err) => {
-                        setDisable(false);
-                        return 'Cannot compelete transaction';
-                      },
-                    });
-                  }
-                }}
-              >
-                Pay {exRate ? `${exRate.toFixed(2)} ${payment}` : `€${amount}`}
-              </button>
+              <div className="col-md-12">
+                <button
+                  disabled={disable}
+                  className="submitBtn"
+                  onClick={() => {
+                    setDisable(true);
+                    if (payment == 'Stripe') {
+                      toast.promise(handleFiat(), {
+                        loading: 'Transaction in process...',
+                        success: (data) => {
+                          setDisable(false);
+                          return '';
+                        },
+                        error: (err) => {
+                          setDisable(false);
+                          return 'Cannot complete transaction';
+                        },
+                      });
+                    } else {
+                      toast.promise(handleCrypto(), {
+                        loading: 'Transaction in process...',
+                        success: (data) => {
+                          Router.push('/MyNft');
+                          return 'Transaction Completed';
+                        },
+                        error: (err) => {
+                          setDisable(false);
+                          return 'Cannot compelete transaction';
+                        },
+                      });
+                    }
+                  }}
+                >
+                  Pay{' '}
+                  {exRate ? `${exRate.toFixed(2)} ${payment}` : `¥${amount}`}
+                </button>
+              </div>
             </div>
-          </div>
-}
+          )}
         </div>
       </div>
     </>
