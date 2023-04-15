@@ -1,0 +1,13 @@
+query getAsset {
+  assets {
+    assetName
+    assetValue
+    assetType
+    availableSupply
+    tokenized
+    couponRate
+    maturity
+    currency
+    assetId
+  }
+}
